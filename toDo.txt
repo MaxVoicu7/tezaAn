@@ -1,0 +1,5 @@
+1. gandit daca e necesar de creat tabel aparte pentru contact
+2. gandit daca e necesar de creat tabel aparte pentru adresa
+3. gandit cu volumul produselor in tabele
+4. de gandit cu ideea daca raman mai putin de 10% din produse, reducerea e eliminta
+5. creat tabel reduceri care nu mai sunt valabile

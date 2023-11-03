@@ -1,0 +1,36 @@
+complementary_discount_product table
+
+-> tabel ce prezinta unul din produsele dintr-o reducere complementara
+-> e o completare a tabelului complementary_discount, unde sunt stocate produsele corespunzatoare reducerii
+-> e conectat cu tabelul complementary_discount prin cheia complementary_discount_id
+-> e conectat cu tabelul product prin cheia product_id
+
+campuri
+id                    -> cheia primara
+discount_id           -> cheie straina ce conecteaza cu tabelul complementary_discount_id, nu poate fi nul
+product_id            -> cheie straina ce conecteaza cu tabelul product, nu poate fi nul
+
+sql 
+
+CREATE TABLE complementary_discount_product (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  complementary_discount_id INT NOT NULL,
+  product_id INT NOT NULL
+);
+
+dbdiagram
+
+Table complementary_discount_product {
+  id INT [pk, increment]
+  complementary_discount_id INT [ref: - complementary_discount.id]
+  product_id INT [ref: > product.id]
+}
+
+code to connect to other tables
+
+ALTER TABLE complementary_discount_product
+ADD FOREIGN KEY (complementary_discount_id) REFERENCES complementary_discount(id),
+ADD FOREIGN KEY (product_id) REFERENCES product(id);
+
+
+de implementat

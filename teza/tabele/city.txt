@@ -1,0 +1,29 @@
+city table
+
+-> tabel ce prezinta totalitatea oraselor din reteaua aplicatiei
+
+campuri
+id                    -> cheia primara
+name                  -> string de maxim 20 caractere ce indica numele orasului, nu poate fi nul
+region                -> string de maxim 20 caractere ce indica regiunea in care e amplasat orasul, nu poate fi nul
+postal_code           -> string de maxim 10 caractere ce indica codul postal
+
+sql 
+
+CREATE TABLE city (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  region VARCHAR(20) NOT NULL,
+  postal_code VARCHAR(10)
+);
+
+dbdiagram
+
+Table city {
+  id INT [pk, increment]
+  name VARCHAR(20)
+  region VARCHAR(20)
+  postal_code VARCHAR(10)
+}
+
+de implementat

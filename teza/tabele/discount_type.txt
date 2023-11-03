@@ -1,0 +1,37 @@
+discount_type table
+
+-> tabel ce descrie toate tipurile de reduceri disponibile la moment
+-> e conectat cu tabelul discount prin cheia primara
+
+campuri
+id                  -> cheia primara
+name                -> nume ce descrie tipul reducerii, string de maxim 30 caractere, nu poate fi nul
+description         -> string de maxim 255 caractere ce descrie tipul reducerii, poate fi nul
+table_name          -> string de maxim 30 caractere ce indica numele tabelulul corespunzator tipului reducerii, nu poate fi nul 
+
+sql 
+
+CREATE TABLE discount_type (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  description VARCHAR(255),
+  table_name VARCHAR(30) NOT NULL
+);
+
+dbdiagram
+
+Table discount_type {
+  id INT [pk, increment]
+  name VARCHAR(30)
+  description VARCHAR(255)
+  table_name VARCHAR(30)
+}
+
+tipuri de reduceri identificate pana la moment
+1. reducere procentuala
+2. reducere valoare fixa
+3. reducere de cantitate
+4. reducere de tip cupon (necesita implementare)
+5. reducere de fidelitate (necesita implementare)
+6. reducere complementara
+7. reducere procentuala categorie (necesita implementare)

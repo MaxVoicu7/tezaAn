@@ -1,0 +1,48 @@
+quantity_discount table
+
+-> tabel ce descrie o reducere cantitativa
+-> o reducere cantitativa presupune ca se cumpara x produse si y produse sunt primite gratis
+-> e o completare a tabelului discount, care se refera doar la reducerile cantitative
+-> e conectat cu tabelul discount prin cheia discount_id
+-> e conectat cu tabelul product prin cheia product_id
+
+campuri
+id                    -> cheia primara
+discount_id           -> cheie straina ce conecteaza cu tabelul discount, nu poate fi nul
+product_id            -> cheie straina ce conecteaza cu tabelul product, nu poate fi nul
+required_quantity     -> cantitatea minima de produse ce trebuie cumparate, nu poate fi nul
+free_quantity         -> cantitatea de produse ce e primita gratis, nu poate fi nul
+final_price           -> va stoca suma finala dupa excluderea procentajului, 10 cifre in total, dintre care 2 dupa virgula, nu poate fi nul
+
+sql 
+
+CREATE TABLE quantity_discount (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  discount_id INT NOT NULL,
+  product_id INT NOT NULL,
+  required_quantity INT NOT NULL,
+  free_quantity INT NOT NULL,
+  final_price DECIMAL(10,2) NOT NULL
+);
+
+
+dbdiagram
+
+Table quantity_discount {
+  id INT [pk, increment]
+  discount_id INT [ref: - discount.id]
+  product_id INT [ref: - product.id]
+  required_quantity INT
+  free_quantity INT
+  final_price DECIMAL(10,2)
+}
+
+code to connect to other tables
+
+ALTER TABLE quantity_discount
+ADD FOREIGN KEY (discount_id) REFERENCES discount(id),
+ADD FOREIGN KEY (product_id) REFERENCES product(id);
+
+
+de implementat
+1. de gandit mai mult la cum de implementat pretul final, deoarece el poate fi calculat direct

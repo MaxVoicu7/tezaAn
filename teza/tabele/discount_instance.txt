@@ -1,0 +1,35 @@
+discount_instance table
+
+-> tabel ce prezinta o instanta a unei reduceri in cadrul unui magazin specific
+-> e conectat cu tabelul discount prin cheia discount_id
+-> e conectat cu tabelul store prin cheia store_id
+
+campuri
+id                    -> cheia primara
+discount_id           -> cheie straina ce conecteaza cu tabelul discount, nu poate fi nul
+store_id              -> cheie straina ce conecteaza cu tabelul store, nu poate fi nul
+
+sql 
+
+CREATE TABLE discount_instance (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  discount_id INT NOT NULL,
+  store_id INT NOT NULL
+);
+
+dbdiagram
+
+Table discount_instance {
+  id INT [pk, increment]
+  discount_id INT [ref: > discount.id]
+  store_id INT [ref: > store.id]
+}
+
+code to connect to other tables
+
+ALTER TABLE discount_instance
+ADD FOREIGN KEY (discount_id) REFERENCES discount(discount_id);
+
+
+de implementat
+1. de gandit ce informatie ar mai fi necesara in acest tabel

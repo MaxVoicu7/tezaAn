@@ -1,0 +1,44 @@
+complementary_discount table
+
+-> tabel ce descrie o reducere complementara
+-> o reducere complementara presupune ca se cumpara x produse diferite, care impreuna, au un pret final mai mic decat luate aparte
+-> e o completare a tabelului discount, care se refera doar la reducerile complementare
+-> e conectat cu tabelul discount prin cheia discount_id
+
+campuri
+id                    -> cheia primara
+discount_id           -> cheie straina ce conecteaza cu tabelul discount, nu poate fi nul
+offer_product_count   -> cantitatea de produse incluse in oferta, nu poate fi nul
+initial price         -> suma combinata a produselor inainte de reducere, 10 cifre in total, 2 dupa virgula, nu poate fi nul
+final_price           -> va stoca suma finala dupa excluderea procentajului, 10 cifre in total, dintre care 2 dupa virgula, nu poate fi nul
+
+sql 
+
+CREATE TABLE complementary_discount (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  discount_id INT NOT NULL,
+  offer_product_count INT NOT NULL,
+  initial price DECIMAL(10, 2) NOT NULL,
+  final_price DECIMAL(10,2) NOT NULL
+);
+
+
+dbdiagram
+
+Table complementary_discount {
+  id INT [pk, increment]
+  discount_id INT [ref: > discount.id]
+  offer_product_count INT
+  initial_price DECIMAL(10, 2)
+  final_price DECIMAL(10,2)
+}
+
+code to connect to other tables
+
+ALTER TABLE complementary_discount
+ADD FOREIGN KEY (discount_id) REFERENCES discount(id);
+
+
+de implementat
+1. de gandit mai mult la cum de implementat pretul initial, deoarece el poate fi calculat direct
+2. de gandit mai mult la necesitatea atributului procentaj (la moment neimplementat)

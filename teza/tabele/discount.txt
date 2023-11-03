@@ -1,0 +1,40 @@
+discount table
+
+-> tabel care descrie o reducere in aspect general
+-> reducerea e prezenta in acest tabel doar atata timp cat e valabila, ulterior e transferata in tabelul cu reduceri invalabile
+-> e conectata cu tabelul discount_type prin cheia straina discount_type_id
+
+campuri
+id                -> cheia primara
+description       -> string de maxim 255 caractere ce va descrie reducerea, nu poate fi nul
+discount_type_id  -> cheie straina ce conecteaza cu tabelul discount_type, nu poate fi nul
+start_date        -> data cand incepe reducerea, nu poate fi nul
+end_date          -> daca cand reducerea se finalizeaza, reducerea e valabila in aceasta zi inclusiv, nu poate fi nul
+
+sql
+
+CREATE TABLE discount (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  description VARCHAR(255) NOT NULL,
+  discount_type_id INT NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL
+);
+
+dbdiagram
+
+Table discount {
+  id INT [pk, increment]
+  description VARCHAR(255)
+  discount_type_id INT [ref: > discount_type.id]
+  start_date DATE
+  end_date DATE
+}
+
+code to connect to related tables based on keys
+
+ALTER TABLE discount
+ADD FOREIGN KEY (discount_type_id) REFERENCES discount_type(id);
+
+de realizat in viitor
+1. inserare de imagine / video / moto pentru fiecare reducere

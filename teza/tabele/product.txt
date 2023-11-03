@@ -1,0 +1,45 @@
+product table
+
+-> tabel ce prezinta un produs
+-> e conectat cu tabelul manufacturer prin cheia straina manufacturer_id
+-> e conectat cu tabelul category prin cheia category_id
+
+campuri
+id                    -> cheia primara
+name                  -> string de maxim 50 caractere ce indica numele produsului, nu poate fi nul
+volume                -> indica volumul produsului daca e necesar
+manufacturer_id       -> cheie straina ce indica producatorul, nu poate fi nul
+unique_code           -> cod unic caracteristic fiecarui produs, nu poate fi nul
+price                 -> pretul produsului, decimal de 10 cifre cu 2 dupa virgula, nu poate fi nul
+category_id           -> cheie straina ce indica categoria, nu poate fi nul
+
+sql 
+
+CREATE TABLE product (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  volume DECIMAL(10,2),
+  manufacturer_id INT NOT NULL,
+  unique_code VARCHAR(255) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  category_id INT NOT NULL
+);
+
+dbdiagram
+
+Table product {
+  id INT [pk, increment]
+  name VARCHAR(50)
+  volume DECIMAL(10,2)
+  manufacturer_id INT [ref: > manufacturer.id]
+  unique_code VARCHAR(255)
+  price DECIMAL(10,2)
+  category_id INT [ref: > category.id]
+}
+
+cod conectare
+ALTER TABLE product
+ADD FOREIGN KEY (manufacturer_id) REFERENCES manufacturer(id),
+ADD FOREIGN KEY (category_id) REFERENCES product_category(id);
+
+de implementat

@@ -1,0 +1,42 @@
+fixed_value_discount table
+
+-> tabel ce descrie o reducere cu valoare fixa
+-> e o completare a tabelului discount, care se refera doar la reducerile cu valoare fixa
+-> e conectat cu tabelul discount prin cheia discount_id
+-> e conectat cu tabelul product prin cheia product_id
+
+campuri
+id                    -> cheia primara
+discount_id           -> cheie straina ce conecteaza cu tabelul discount, nu poate fi nul
+product_id            -> cheie straina ce conecteaza cu tabelul product, nu poate fi nul
+discount_amount       -> suma ce va fi eliminata din pretul produsului, 10 cifre in total, 2 dupa virgula, nu poate fi nul
+final_price           -> va stoca suma finala dupa excluderea procentajului, 10 cifre in total, dintre care 2 dupa virgula, nu poate fi nul
+
+sql 
+
+CREATE TABLE fixed_value_discount (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  discount_id INT NOT NULL,
+  product_id INT NOT NULL,
+  discount_amount DECIMAL(10,2) NOT NULL,
+  final_price DECIMAL(10,2) NOT NULL
+);
+
+dbdiagram
+
+Table fixed_value_discount {
+  id INT [pk, increment]
+  discount_id INT [ref: - discount.id]
+  product_id INT [ref: - product.id]
+  discount_amount DECIMAL(10,2)
+  final_price DECIMAL(10,2)
+}
+
+code to connect to other tables
+
+ALTER TABLE fixed_value_discount
+ADD FOREIGN KEY (discount_id) REFERENCES discount(id),
+ADD FOREIGN KEY (product_id) REFERENCES product(id);
+
+
+de implementat

@@ -1,0 +1,50 @@
+store table
+
+-> tabel ce prezinta un magazin dintr-o retea
+-> e conectat la tabelul store_network prin cheia straina network_id
+
+campuri
+id                    -> cheia primara
+name                  -> string de maxim 100 caractere ce indica numele magazinului, nu poate fi nul
+network_id            -> cheie straina ce leaga de tabelul store_network, nu poate fi nul
+address               -> string de maxim 100 caractere ce indica adresa magazinului, nu poate fi nul
+contact_phone         -> string de maxim 15 caractere ce indica telefonul de contact, nu poate fi nul
+opening_hour          -> indica ora de deschidere a magazinului
+closing_hour          -> ora de inchidere a magazinului
+is_open_24_7          -> boolean ce indica daca magazinul e deschis 24/7, nu poate fi nul
+city_id               -> cheie straina ce indica in ce oras se afla magazinul, nu poate fi nul
+
+sql 
+
+CREATE TABLE store (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  network_id INT NOT NULL,
+  address VARCHAR(100),
+  phone VARCHAR(15),
+  opening_hour TIME,
+  closing_hour TIME,
+  is_open_24_7 BOOLEAN NOT NULL,
+  city_id INT NOT NULL
+);
+
+dbdiagram
+
+Table store {
+  id INT [pk, increment]
+  name VARCHAR(100)
+  network_id INT [ref: > store_network.id]
+  address VARCHAR(100)
+  phone VARCHAR(15)
+  opening_hour TIME
+  closing_hour TIME
+  is_open_24_7 BOOLEAN
+  city_id INT [ref: > city.id]
+}
+
+conect to other tables
+ALTER TABLE store
+ADD FOREIGN KEY (city_id) REFERENCES city(id),
+ADD FOREIGN KEY (network_id) REFERENCES store_network(id);
+
+de implementat

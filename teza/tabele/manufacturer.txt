@@ -1,0 +1,29 @@
+manufacturer table
+
+-> tabel ce prezinta lista producatorilor
+
+campuri
+id                    -> cheia primara
+name                  -> string de maxim 40 caractere ce indica numele producatorului, nu poate fi nul
+contact_phone         -> string de maxim 15 caractere ce indica telefonul producatorului, nu poate fi nul
+contact_email         -> string de maxim 50 caractere ce indica emailul producatorul, nu poate fi nul
+
+sql 
+
+CREATE TABLE manufacturer (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(40) NOT NULL,
+  contact_phone VARCHAR(15) NOT NULL,
+  contact_email VARCHAR(50) NOT NULL
+);
+
+dbdiagram
+
+Table manufacturer {
+  id INT [pk, increment]
+  name VARCHAR(40)
+  contact_phone VARCHAR(15)
+  contact_email VARCHAR(50)
+}
+
+de implementat

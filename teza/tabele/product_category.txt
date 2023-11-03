@@ -1,0 +1,23 @@
+product_category table
+
+-> tabel ce prezinta categoriile produselor
+
+campuri
+id                    -> cheia primara
+name                  -> string de maxim 100 caractere ce indica numele categoriei, nu poate fi nul
+
+sql 
+
+CREATE TABLE product_category (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL
+);
+
+dbdiagram
+
+Table product_category {
+  id INT [pk, increment]
+  name VARCHAR(100)
+}
+
+de implementat
