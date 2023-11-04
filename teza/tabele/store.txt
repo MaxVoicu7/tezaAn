@@ -8,7 +8,7 @@ id                    -> cheia primara
 name                  -> string de maxim 100 caractere ce indica numele magazinului, nu poate fi nul
 network_id            -> cheie straina ce leaga de tabelul store_network, nu poate fi nul
 address               -> string de maxim 100 caractere ce indica adresa magazinului, nu poate fi nul
-contact_phone         -> string de maxim 15 caractere ce indica telefonul de contact, nu poate fi nul
+contact_id            -> cheie straina ce conecteaza cu contact_info, nu poate fi nul
 opening_hour          -> indica ora de deschidere a magazinului
 closing_hour          -> ora de inchidere a magazinului
 is_open_24_7          -> boolean ce indica daca magazinul e deschis 24/7, nu poate fi nul
@@ -21,7 +21,7 @@ CREATE TABLE store (
   name VARCHAR(100) NOT NULL,
   network_id INT NOT NULL,
   address VARCHAR(100),
-  phone VARCHAR(15),
+  contact_id INT NOT NULL,
   opening_hour TIME,
   closing_hour TIME,
   is_open_24_7 BOOLEAN NOT NULL,
@@ -35,7 +35,7 @@ Table store {
   name VARCHAR(100)
   network_id INT [ref: > store_network.id]
   address VARCHAR(100)
-  phone VARCHAR(15)
+  contact_id INT [ref: - contact_info.id]
   opening_hour TIME
   closing_hour TIME
   is_open_24_7 BOOLEAN
@@ -45,6 +45,7 @@ Table store {
 conect to other tables
 ALTER TABLE store
 ADD FOREIGN KEY (city_id) REFERENCES city(id),
-ADD FOREIGN KEY (network_id) REFERENCES store_network(id);
+ADD FOREIGN KEY (network_id) REFERENCES store_network(id),
+ADD FOREIGN KEY (contact_id) REFERENCES contact_info(id);
 
 de implementat

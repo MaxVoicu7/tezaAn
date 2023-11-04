@@ -1,0 +1,26 @@
+contact_info table
+
+-> tabel ce prezinta contactele prin numar de telefon si email
+
+campuri
+id                    -> cheia primara
+phone_number          -> string de 15 caractere ce permite stocarea unui numar de telefon
+email                 -> string de 50 de caractere ce permite stocarea unui email
+
+sql 
+
+CREATE TABLE contact_info (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  phone_number VARCHAR(15),
+  email VARCHAR(50)
+);
+
+dbdiagram
+
+Table contact_info {
+  id INT [pk, increment]
+  phone_number VARCHAR(15)
+  email VARCHAR(50)
+}
+
+de implementat

@@ -6,8 +6,7 @@ campuri
 id                    -> cheia primara
 name                  -> string de maxim 20 caractere ce indica numele retelei, nu poate fi nul
 store_count           -> indica cate magazine are aceasta retea
-contact_email         -> string de maxim 100 caractere ce indica email ul de contact_email
-contact_phone         -> string de maxim 15 caractere ce indica telefonul de contact_email
+contact_id            -> cheie straina ce conecteaza cu contact_info, nu poate fi nul
 headquartes_address   -> string de maxim 100 caractere ce indica adresa sediului central
 
 sql 
@@ -16,8 +15,7 @@ CREATE TABLE store_network (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(20) NOT NULL,
   store_count INT,
-  contact_email VARCHAR(100),
-  contact_phone VARCHAR(15),
+  contact_id INT NOT NULL,
   headquarters_address VARCHAR(100)
 );
 
@@ -27,9 +25,12 @@ Table store_network {
   id INT [pk, increment]
   name VARCHAR(20)
   store_count INT
-  contact_email VARCHAR(100)
-  contact_phone VARCHAR(15)
+  contact_id INT [ref: - contact_info.id]
   headquarters_address VARCHAR(100)
 }
+
+conectare la alt tabel
+ALTER TABLE store_network
+ADD FOREIGN KEY (contact_id) REFERENCES contact_info(id);
 
 de implementat
