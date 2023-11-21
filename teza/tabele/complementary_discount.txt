@@ -18,7 +18,7 @@ CREATE TABLE complementary_discount (
   id INT AUTO_INCREMENT PRIMARY KEY,
   discount_id INT NOT NULL,
   offer_product_count INT NOT NULL,
-  initial price DECIMAL(10, 2) NOT NULL,
+  initial_price DECIMAL(10, 2) NOT NULL,
   final_price DECIMAL(10,2) NOT NULL
 );
 
