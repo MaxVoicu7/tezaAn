@@ -1,6 +1,6 @@
-from flask import Flask, jsonify
+from flask import Flask
 from config.config import Config
-from db.db_connect import db, init_db
+from db.db_connect import init_db
 from routes.route import main_blueprint
 
 app = Flask(__name__)
