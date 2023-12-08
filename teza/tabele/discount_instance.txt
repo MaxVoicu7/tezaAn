@@ -28,7 +28,8 @@ Table discount_instance {
 code to connect to other tables
 
 ALTER TABLE discount_instance
-ADD FOREIGN KEY (discount_id) REFERENCES discount(id);
+ADD FOREIGN KEY (discount_id) REFERENCES discount(id),
+ADD FOREIGN KEY (store_id) REFERENCES store(id);
 
 
 de implementat

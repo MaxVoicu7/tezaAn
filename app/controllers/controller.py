@@ -8,7 +8,8 @@ def index():
 def get_tables():
   try:
     inspector = inspect(db.engine)
-    tables = inspector.get_table_names()
-    return jsonify(tables)
+    columns = inspector.get_columns('city')
+    column_info = [{'name': col['name'], 'type': str(col['type'])} for col in columns]
+    return jsonify(column_info)
   except Exception as e:
     return jsonify({"error": str(e)}), 500
