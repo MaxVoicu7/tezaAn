@@ -1,0 +1,534 @@
+/* ================ GOOGLE FONTS ================ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+
+
+// ================= RESET =================
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  transition: all .2s linear;
+}
+
+
+
+// ================= COLORS & BORDER ================
+
+$blue: #29d9d5;
+$black: #111;
+$white: #fff;
+$light-color: #aaa;
+$lighter-color: #cecece;
+$bg-color: #222;
+$black-bg: rgba(17, 17, 17, .8);
+$border: .2rem solid $blue;
+
+
+@mixin grid($val) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+  gap: 1.5rem;
+}
+
+
+
+// ================= GENERAL STYLING ====================
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 9rem;
+
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $black;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $blue;
+  }
+}
+
+body {
+  background: $black;
+  overflow-x: hidden;
+}
+
+.logo {
+  font-size: 2.5rem;
+  color: $white;
+  font-weight: 600;
+
+  i {
+    color: $blue;
+    padding: .5rem;
+  }
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  .heading__label {
+    color: $blue;
+    font-size: 2rem;
+  }
+
+  .heading__title {
+    font-size: 4rem;
+    color: $white;
+    margin-top: .5rem;
+  }
+}
+
+section {
+  padding: 3rem 9%;
+}
+
+.btn {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 1rem 3rem;
+  font-size: 1.7rem;
+  color: $blue;
+  border: $border;
+  border-radius: 5rem;
+  cursor: pointer;
+  background: none;
+
+  &:hover {
+    background: $blue;
+    color: $black;
+  }
+}
+
+.menu-btn {
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+
+
+// ================= HEADER and NAVBAR ======================
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1111;
+  background: $bg-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 9%;  
+
+  .navbar__link {
+    font-size: 1.7rem;
+    color: $light-color;
+    display: inline-block;
+    margin: 0 1rem;
+
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+
+
+
+// ================= HOME ======================
+
+.home {
+  margin: 0 auto;
+  margin-top: 9rem;
+  width: 90%;
+  min-height: 80vh;
+  border-radius: 1rem;
+  background: linear-gradient($black-bg, $black-bg), url(../images/home.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .home__content {
+    text-align: center;
+
+    .home__label {
+      font-weight: 600;
+      color: transparent;
+      -webkit-text-stroke: .1rem $white;
+      font-size: 7vw;
+      display: block;
+    }
+
+    .home__title {
+      font-size: 6vw;
+      color: $white;
+    }
+
+    .home__description {
+      max-width: 50rem;
+      margin: 1rem auto;
+      font-size: 1.4rem;
+      color: $lighter-color;
+      line-height: 2;
+    }
+  }
+}
+
+
+
+// ================= ABOUT ======================
+
+.about {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 5rem;
+
+  .video-container {
+    flex: 1 1 42rem;
+
+    .video {
+      border-radius: 1rem;
+      width: 100%;
+    }
+
+    .video-controls {
+      text-align: center;
+      padding: 2rem 0;
+
+      .video__btn {
+        display: inline-block;
+        height: 2rem;
+        width: 2rem;
+        margin: .7rem;
+        border-radius: 50%;
+        background: $white;
+        cursor: pointer;
+
+        &:hover {
+          background: $blue;
+        }
+      }
+    }
+  }
+
+  .about__content {
+    flex: 1 1 42rem;
+    margin-bottom: 5rem;
+
+    .about__label {
+      color: $blue;
+      font-size: 3rem;
+    }
+
+    .about__title {
+      color: $white;
+      font-size: 3.5rem;
+      margin-top: .5rem;
+    }
+
+    .about__description {
+      padding: 1rem 0;
+      font-size: 1.4rem;
+      color: $lighter-color;
+      line-height: 2;
+    }
+
+    .display-description {
+      display: none;
+    }
+  }
+}
+
+
+
+// ================= STORES ======================
+
+.stores {
+  .stores__container {
+    @include grid(20rem);
+
+    .store {
+      border-radius: 1rem;
+      overflow: hidden;
+      background: $bg-color;
+
+      &:hover img {
+        transform: scale(1.1);
+      }
+
+      .store__image {
+        height: 20rem;
+        overflow: hidden;
+        width: 100%; 
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .store__content {
+        padding: 2rem;
+        text-align: center;
+
+        .store__title {
+          font-size: 2rem;
+          color: $white;
+        }
+
+        .store__description {
+          padding: 1rem 0;
+          font-size: 1.4rem;
+          color: $lighter-color;
+          line-height: 2;
+        }
+      }
+    }
+  }
+}
+
+
+
+// ================= SERVICES ======================
+
+.services {
+  .services__container {
+    @include grid(32rem);
+
+    .service {
+      background: $bg-color;
+      border-radius: 1rem;
+      padding: 3rem;
+      text-align: center;
+      border: .2rem solid $black;
+
+      &:hover {
+        border: $border;
+      }
+
+      i {
+        font-size: 4rem;
+        color: $blue;
+        margin-bottom: 2rem;
+      }
+
+      .service__title {
+        font-size: 2rem;
+        color: $white;
+      }
+
+      .service__description {
+        padding: 1rem 0;
+        font-size: 1.4rem;
+        color: $lighter-color;
+        line-height: 2;
+      }
+    }
+  }
+}
+
+
+
+// ================= BANNER ======================
+
+.banner {
+  background: linear-gradient($black-bg, $black-bg), url(../images/banner2.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 3rem 0;
+  background-attachment: fixed;
+  text-align: center;
+
+  .banner__content {
+    .banner__label {
+      font-size: 2rem;
+      color: $blue;
+    }
+
+    .banner__title {
+      font-size: 4rem;
+      color: $white;
+      margin-top: 1rem;
+    }
+
+    .banner__description {
+      max-width: 50rem;
+      margin: 1rem auto;
+      font-size: 1.4rem;
+      color: $lighter-color;
+      line-height: 2;
+    }
+  }
+}
+
+
+// ================= FOOTER ======================
+
+.footer {
+  .credits {
+    background: $bg-color;
+    text-align: center;
+    font-size: 2rem;
+    padding: 2rem 1rem;
+    color: $light-color;
+
+    .credits__person {
+      color: $blue;
+    }
+  }
+}
+
+
+
+// ================= SELECT ======================
+
+.select {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 9rem;
+  background: $bg-color;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ================== RESPONSIVE =====================
+
+@media (max-width:800px) {
+  html {
+    font-size: 60%;
+  }
+
+  .header {
+    padding: 1.5rem 2rem;
+  }
+
+  section {
+    padding: 3rem 2rem;
+  }
+
+  .banner {
+    .banner__content {
+      .banner__title {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+@media (max-width:620px) {
+  html {
+    font-size: 55%;
+  }
+
+  .menu-btn {
+    display: inline-block;
+  }
+
+  .header {
+    .navbar {
+      position: absolute;
+      top: 99%;
+      left: 0;
+      right: 0;
+      background: $bg-color;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+
+      &.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .navbar__link {
+        margin: 2rem;
+        font-size: 2rem;
+        display: block;
+      }
+    }
+  }
+
+  .home {
+    margin-top: 10rem;
+
+    .home__content {
+
+      .home__label {
+        font-size: 10vw;
+      }
+
+      .home__title {
+        font-size: 9vw;
+      }
+    }
+  }
+}
+
+@media (max-width:540px) {
+  .about {
+    .about__content {
+      .about__label {
+        font-size: 2.4rem;
+      }
+
+      .about__title {
+        font-size: 2.75rem;
+      }
+    }
+  }
+
+  .banner {
+    .banner__content {
+      .banner__title {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width:450px) {
+  html {
+    font-size: 55%;
+  }
+
+  .about {
+    .about__content {
+      .about__label {
+        font-size: 1.9rem;
+      }
+
+      .about__title {
+        font-size: 2.25rem;
+      }
+    }
+  }
+}
