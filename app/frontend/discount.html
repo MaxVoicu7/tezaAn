@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./css/style.css">
 
   <!-- ================== JS ================== -->
-  <script src="./js/script.js" defer></script>
+  <script src="./js/discount.js" defer></script>
 
 </head>
 <body>
@@ -41,20 +41,59 @@
   <!-- ============== SELECT SECTION START ================ -->
 
   <section class="select" id="select">
+
+    <div class="heading">
+      <h2 class="heading__title">Selectați un produs</h2>
+    </div>
     
     <div class="select__item">
       <label for="category-select" class="select__label">Categorie</label>
       <select id="category-select">
-        <option value="">--Alege o categorie--</option>
-        <option value="electronics">Electronice</option>
+        <option value="">Alege o categorie</option>
       </select>
+    </div>
+
+    <div class="select__item">
+      <span class="select__label">Preț</span>
+      
+      <div class="price-select">
+        <label for="start-value" class="price__label">Preț minim</label>
+        <input type="number" id="start-value" name="start-value" min="0" max="20000" value="0" class="input-range">
+      
+        <label for="end-value" class="price__label">Preț maxim</label>
+        <input type="number" id="end-value" name="end-value" min="0" max="20000" value="20000" class="input-range">
+      </div>
+    </div>
+
+    <div class="select__btn">
+      <button id="filter-submit" class="btn">Caută</button>
     </div>
 
   </section>
 
   <!-- ============== SELECT SECTION START ================ -->
 
+  <section class="discounts">
 
+    <div class="discount">
+      <div class="discount__presentation">
+        <span class="discount__label">Produs</span>
+        <p class="discount__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, modi.</p>
+      </div>
+
+      <div class="discount__price">
+        <div class="prices">
+          <p class="old-price">20.00</p>
+          <p class="new-price">18.00</p>
+        </div>
+
+        <div class="discount__button">
+          <button class="btn">Mai mult</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
 
   <!-- ============== FOOTER SECTION START ================= -->
 

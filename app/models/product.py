@@ -1,6 +1,6 @@
 from db.db_connect import db
 from models.product_category import ProductCategory
-from models.contact_info import ContactInfo
+from models.manufacturer import Manufacturer
 
 class Product(db.Model):
   __tablename__ = 'product'

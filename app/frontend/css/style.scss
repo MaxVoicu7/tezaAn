@@ -401,17 +401,139 @@ section {
 // ================= SELECT ======================
 
 .select {
-  width: 90%;
+  width: 70%;
   margin: 0 auto;
   margin-top: 9rem;
   background: $bg-color;
+  border-radius: 3rem;
+
+  .select__item {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.75rem;
+  }
+
+  .select__label {
+    margin-bottom: .5rem;
+    font-size: 2.5rem;
+    color: $blue;
+  }
+
+  select {
+    text-align: center;
+    width: 40%;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    font-size: 1.75rem;
+    color: $light-color;
+    background: $black;
+    border: $border;
+  }
+
+  .price-select {
+    font-size: 1.75rem;
+    
+    .price__label {
+      margin-right: 0.5rem;
+      color: $lighter-color;
+    }
+
+    .input-range::-webkit-inner-spin-button,
+    .input-range::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input {
+      font-size: 1.5rem;
+      background: $black;
+      border: $border;
+      color: $light-color;
+      padding: 0.4rem 2rem;
+      border-radius: 1rem;
+    }
+
+    input + label {
+      margin-left: 2rem;
+    }
+  }
+
+  .select__btn {
+    text-align: center;
+
+    .btn {
+      background: $black;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
 }
 
 
 
+// ================= DISCOUNTS ======================
 
+.discounts {
+  width: 80%;
+  margin: 0 auto;
 
+  .discount {
+    background: $bg-color;
+    padding: 2rem 3rem;
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: .2rem solid $bg-color;
 
+    .discount__presentation {
+      padding: 1rem;
+      width: 70%;
+
+      .discount__label {
+        font-size: 2rem;
+        color: $blue;
+      }
+  
+      .discount__description {
+        font-size: 1.5rem;
+        color: $light-color;
+        line-height: 2;
+      }
+    }
+
+    .discount__price {
+      font-size: 2rem;
+      padding: 0 2rem;
+
+      .prices {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+
+        .old-price {
+          color: red;
+          text-decoration: line-through;
+        }
+  
+        .new-price {
+          color: rgb(22, 207, 22);
+        }
+      }
+
+      .discount__button {
+        margin-top: 0.7rem;
+      }
+    }
+
+    &:hover {
+      border: $border;
+    }
+  }
+}
 
 
 

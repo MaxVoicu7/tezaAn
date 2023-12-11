@@ -284,9 +284,111 @@ section {
   color: #29d9d5;
 }
 .select {
-  width: 90%;
+  width: 70%;
+  margin: 0 auto;
   margin-top: 9rem;
   background: #222;
+  border-radius: 3rem;
+}
+.select .select__item {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.75rem;
+}
+.select .select__label {
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  color: #29d9d5;
+}
+.select select {
+  text-align: center;
+  width: 40%;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  font-size: 1.75rem;
+  color: #aaa;
+  background: #111;
+  border: 0.2rem solid #29d9d5;
+}
+.select .price-select {
+  font-size: 1.75rem;
+}
+.select .price-select .price__label {
+  margin-right: 0.5rem;
+  color: #cecece;
+}
+.select .price-select .input-range::-webkit-inner-spin-button, .select .price-select .input-range::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.select .price-select input {
+  font-size: 1.5rem;
+  background: #111;
+  border: 0.2rem solid #29d9d5;
+  color: #aaa;
+  padding: 0.4rem 2rem;
+  border-radius: 1rem;
+}
+.select .price-select input + label {
+  margin-left: 2rem;
+}
+.select .select__btn {
+  text-align: center;
+}
+.select .select__btn .btn {
+  background: #111;
+}
+.select .select__btn .btn:hover {
+  color: #fff;
+}
+.discounts {
+  width: 80%;
+  margin: 0 auto;
+}
+.discounts .discount {
+  background: #222;
+  padding: 2rem 3rem;
+  border-radius: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0.2rem solid #222;
+}
+.discounts .discount .discount__presentation {
+  padding: 1rem;
+  width: 70%;
+}
+.discounts .discount .discount__presentation .discount__label {
+  font-size: 2rem;
+  color: #29d9d5;
+}
+.discounts .discount .discount__presentation .discount__description {
+  font-size: 1.5rem;
+  color: #aaa;
+  line-height: 2;
+}
+.discounts .discount .discount__price {
+  font-size: 2rem;
+  padding: 0 2rem;
+}
+.discounts .discount .discount__price .prices {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.discounts .discount .discount__price .prices .old-price {
+  color: red;
+  text-decoration: line-through;
+}
+.discounts .discount .discount__price .prices .new-price {
+  color: #16cf16;
+}
+.discounts .discount .discount__price .discount__button {
+  margin-top: 0.7rem;
+}
+.discounts .discount:hover {
+  border: 0.2rem solid #29d9d5;
 }
 @media (max-width: 800px) {
   html {
