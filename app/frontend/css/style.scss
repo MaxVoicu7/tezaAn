@@ -488,24 +488,33 @@ section {
     align-items: center;
     justify-content: space-between;
     border: .2rem solid $bg-color;
+    margin-bottom: 1.5rem;
 
     .discount__presentation {
       padding: 1rem;
-      width: 70%;
+      width: 60%;
 
       .discount__label {
         font-size: 2rem;
         color: $blue;
       }
+
+      .discount__info {
+        color: $light-color;
+        font-size: 1.25rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+      }
   
       .discount__description {
         font-size: 1.5rem;
-        color: $light-color;
+        color: $lighter-color;
         line-height: 2;
       }
     }
 
     .discount__price {
+      width: 30%;
       font-size: 2rem;
       padding: 0 2rem;
 
@@ -525,7 +534,8 @@ section {
       }
 
       .discount__button {
-        margin-top: 0.7rem;
+        text-align: center;
+        margin-top: 0.2rem;
       }
     }
 

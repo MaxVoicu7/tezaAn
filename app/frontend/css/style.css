@@ -354,21 +354,29 @@ section {
   align-items: center;
   justify-content: space-between;
   border: 0.2rem solid #222;
+  margin-bottom: 1.5rem;
 }
 .discounts .discount .discount__presentation {
   padding: 1rem;
-  width: 70%;
+  width: 60%;
 }
 .discounts .discount .discount__presentation .discount__label {
   font-size: 2rem;
   color: #29d9d5;
 }
+.discounts .discount .discount__presentation .discount__info {
+  color: #aaa;
+  font-size: 1.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
 .discounts .discount .discount__presentation .discount__description {
   font-size: 1.5rem;
-  color: #aaa;
+  color: #cecece;
   line-height: 2;
 }
 .discounts .discount .discount__price {
+  width: 30%;
   font-size: 2rem;
   padding: 0 2rem;
 }
@@ -385,7 +393,8 @@ section {
   color: #16cf16;
 }
 .discounts .discount .discount__price .discount__button {
-  margin-top: 0.7rem;
+  text-align: center;
+  margin-top: 0.2rem;
 }
 .discounts .discount:hover {
   border: 0.2rem solid #29d9d5;
