@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iDiscount</title>
+
+  <!-- ============= FONT AWESOME CDN =============== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- ================ CSS ================= -->
+  <link rel="stylesheet" href="./css/add_product.css">
+
+  <!-- ================== JS ================== -->
+  <script src="./js/add_product.js" defer></script>
+
+</head>
+<body>
+
+  <section class="add-product-form-section">
+    <form id="add-product-form">
+      <label for="product-name">Nume:</label>
+      <input type="text" id="product-name" name="product-name" required>
+  
+      <label for="product-volume">Volum:</label>
+      <input type="number" id="product-volume" name="product-volume" min="0" required>
+  
+      <label for="manufacturer-select">Producător:</label>
+      <select id="manufacturer-select" name="manufacturer" required>
+        <!-- Opțiunile vor fi populat dinamic -->
+      </select>
+  
+      <label for="unique-code">Cod Unic:</label>
+      <input type="text" id="unique-code" name="unique-code" required>
+  
+      <label for="product-price">Preț:</label>
+      <input type="number" id="product-price" name="product-price" min="0" step="0.01" required>
+  
+      <label for="category-select">Categorie:</label>
+      <select id="category-select" name="category" required>
+        <!-- Opțiunile vor fi populat dinamic -->
+      </select>
+  
+      <button type="submit" class="btn">Adaugă Produs</button>
+    </form>
+  </section>
+
+</body>
+</html>

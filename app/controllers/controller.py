@@ -10,6 +10,8 @@ from models.percentage_discount import PercentageDiscount
 from models.product import Product
 from models.complementary_discount_product import ComplementaryDiscountProduct
 
+
+
 def get_categories():
   try:
     categories = ProductCategory.query.all()

@@ -1,0 +1,47 @@
+.product-section {
+  color: #ffffff;
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table th, .product-table td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #333;
+}
+
+.product-table th {
+  font-size: 1.1em;
+}
+
+.product-table td {
+  font-size: 0.95em;
+}
+
+
+
+.add-product-btn-container {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  color: #ffffff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.btn:hover {
+  background-color: #037d53;
+}
