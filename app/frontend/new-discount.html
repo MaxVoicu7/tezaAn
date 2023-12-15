@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+
+  <!-- ================ CSS =============== -->
+  <link rel="stylesheet" href="./css/new-discount.css">
+
+  <!-- ================ BOXICONS =============== -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- ============== GOOGLE FONTS ============= -->
+  
+</head>
+<body>
+
+  <div class="discount-form">
+    <form class="discount-form__body">
+        <div class="discount-form__group">
+            <label for="description" class="discount-form__label">Descriere reducere:</label>
+            <input type="text" id="description" name="description" maxlength="250" placeholder="Introduceți descrierea aici" required class="discount-form__input discount-form__input--description">
+        </div>
+        
+        <div class="discount-form__group discount-form__group--dates">
+          <div class="discount-form__date">
+            <label for="start-date" class="discount-form__label">Ziua de început a reducerii:</label>
+            <input type="date" id="start-date" name="start-date" required class="discount-form__input discount-form__input--date">
+          </div>
+          <div class="discount-form__date">
+            <label for="end-date" class="discount-form__label">Ziua de sfârșit a reducerii:</label>
+            <input type="date" id="end-date" name="end-date" required class="discount-form__input discount-form__input--date">
+          </div>
+        </div>
+
+        <div class="discount-form__group">
+          <label for="discount-type" class="discount-form__label">Tipul reducerii:</label>
+          <select id="discount-type" name="discount-type" required class="discount-form__select">
+              <option value="0">-Selectați tipul reducerii-</option>
+              <option value="1">Reducere procentuală</option>
+              <option value="4">Reducere cantitativă</option>
+              <option value="2">Reducere de valoare fixă</option>
+              <option value="3">Reducere complementară</option>
+          </select>
+        </div>
+
+        <div id="specific-fields-container"></div>
+
+        <div id="stores-fields-container"></div>
+
+        <button type="submit" class="discount-form__submit">Salvează</button>
+    </form>
+  </div>
+
+  <script src="./js/new-discount.js"></script>
+</body>
+</html>

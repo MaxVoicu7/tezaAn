@@ -29,12 +29,16 @@
             <ul class="insights">
                 <li>
                   <i class='bx bxs-time'></i>
-                    <span class="info">
+                  <span class="info">
                         <h3>
                             Reduceri active
                         </h3>
-                        <p>Total: 12</p>
-                    </span>
+                        <p id="active-discount-count">Total: 12</p>
+                        <button class="insight-btn active-discount">
+                            Vezi reducerile
+                        </button>
+                  </span>
+
                 </li>
                 <li>
                   <i class='bx bx-stats' ></i>
@@ -42,7 +46,10 @@
                         <h3>
                             Reduceri anterioare
                         </h3>
-                        <p>Total: 40</p>
+                        <p id="expired-discount-count">Total: 40</p>
+                        <button class="insight-btn expired-discount">
+                            Vezi reducerile
+                        </button>
                     </span>
                 </li>
                 <li>
@@ -51,62 +58,28 @@
                         <h3>
                             Reduceri planificate
                         </h3>
-                        <p>Total: 4</p>
+                        <p id="future-discount-count">Total: 4</p>
+                        <button class="insight-btn future-discount">
+                            Vezi reducerile
+                        </button>
                     </span>
                 </li>
             </ul>
             <!-- End of Insights -->
 
+            <div class="add-discount">
+                <button class="create-discount">Adaugă o reducere</button>
+            </div>
+
             <div class="bottom-data">
                 <div class="orders">
                     <div class="header">
                         <i class='bx bxs-discount' ></i>
-                        <h3>Reduceri curente</h3>
+                        <h3 class="discount-status-title">Selectați un tip de reducere</h3>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Discount ID</th>
-                                <th>Început</th>
-                                <th>Sfârșit</th>
-                                <th>Tip reducere</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <p>1</p>
-                                </td>
-                                <td>14-08-2023</td>
-                                <td>14-08-2023</td>
-                                <td>Procentuală</td>
-                                <td><i class='bx edit-btn bxs-edit-alt' ></i></td>
-                                <td><i class='bx delete-btn bxs-trash-alt'></i></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>2</p>
-                                </td>
-                                <td>14-08-2023</td>
-                                <td>14-08-2023</td>
-                                <td>Procentuală</td>
-                                <td><i class='bx edit-btn bxs-edit-alt' ></i></td>
-                                <td><i class='bx delete-btn bxs-trash-alt'></i></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>3</p>
-                                </td>
-                                <td>14-08-2023</td>
-                                <td>14-08-2023</td>
-                                <td>Procentuală</td>
-                                <td><i class='bx edit-btn bxs-edit-alt' ></i></td>
-                                <td><i class='bx delete-btn bxs-trash-alt'></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="discount-table-container">
+
+                    </div>
                 </div>
 
             </div>
