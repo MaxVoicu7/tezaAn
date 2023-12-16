@@ -262,3 +262,209 @@ body{
   cursor: pointer; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+.edit-discount-popup {
+  position: fixed; /* Poziție fixă pentru a apărea peste conținut */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrare pe ecran */
+  width: 80%; /* Lățime adaptabilă, potrivită pentru dispozitive mobile */
+  max-width: 400px; /* Lățime maximă pentru a nu fi prea mare pe ecrane mari */
+  padding: 20px;
+  background-color: white; /* Fundal alb, ca și cardurile tale */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Umbră ușoară pentru efect de elevație */
+  border-radius: 8px; /* Margini rotunjite ca și cardurile tale */
+  z-index: 1000;
+}
+
+
+
+.edit-discount-popup h2 {
+  color: #333;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.edit-discount-popup label {
+  display: block;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.edit-discount-popup textarea,
+.edit-discount-popup input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.edit-btn {
+  text-align: center;
+}
+
+.edit-discount-popup button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Butoanele ar trebui să aibă stiluri similare cu cele din pagina principală */
+.edit-changes-btn {
+  background: var(--light-primary);
+  color: var(--primary);
+}
+
+.close-changes-btn {
+  background: var(--light-warning);
+  color: var(--warning);
+}
+
+/* Modifică hover-ul butoanelor pentru feedback vizual */
+.edit-discount-popup button:hover {
+  opacity: 0.9;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semitransparent pentru a evidenția pop-up-ul */
+  z-index: 999; /* Sub pop-up, dar deasupra altor elemente */
+}
+
+
+
+.modal {
+  position: fixed; /* Poziție fixă pentru a apărea peste conținut */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrare pe ecran */
+  width: 80%; /* Lățime adaptabilă, potrivită pentru dispozitive mobile */
+  max-width: 400px; /* Lățime maximă pentru a nu fi prea mare pe ecrane mari */
+  padding: 20px;
+  background-color: white; /* Fundal alb, ca și cardurile tale */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Umbră ușoară pentru efect de elevație */
+  border-radius: 8px; /* Margini rotunjite ca și cardurile tale */
+  z-index: 1000;
+  display: none; /* Ascunde inițial pop-up-ul */
+  box-sizing: border-box; /* Asigură că padding-ul și border-ul sunt incluse în lățime */
+}
+
+/* Stilizarea conținutului pop-up-ului */
+.modal-content {
+  text-align: center; /* Centrează conținutul */
+}
+
+/* Butonul de închidere a ferestrei */
+.close {
+  float: right; /* Poziționează-l în dreapta */
+  font-size: 1.5em; /* Mărește dimensiunea */
+  cursor: pointer;
+}
+
+/* Stilizarea textului întrebării */
+.modal-content p {
+  margin-bottom: 20px; /* Spațiu sub întrebare */
+  font-size: 1.2em; /* Mărește dimensiunea textului */
+  color: #333; /* Culoare text */
+}
+
+/* Stilizarea butoanelor */
+.modal-content button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px; /* Spațiu între butoane */
+  transition: opacity 0.3s; /* Animatie pentru hover */
+}
+
+/* Stiluri specifice pentru butonul de confirmare */
+#abandon-delete {
+  background-color: var(--success);
+  color: var(--light-success);
+}
+
+/* Stiluri specifice pentru butonul de anulare */
+#confirm-delete {
+  background-color: var(--danger); /* o culoare roșie pentru pericol */
+  color: white;
+}
+
+/* Hover efect pentru butoane */
+.modal-content button:hover {
+  opacity: 0.9;
+}
+
+
+
+.info-discount-popup {
+  /* Atribuie aici stiluri similare cu .edit-discount-popup pentru coerență */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 400px; /* sau orice altă lățime care se potrivește cu designul tău */
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1000;
+  display: none; /* Inițial este ascuns */
+  box-sizing: border-box;
+  text-align: center; /* Textul este centrat */
+}
+
+.info-discount-popup h2 {
+  color: #333;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  /* Poti adauga o margine sau un padding dacă este necesar */
+}
+
+.info-discount-popup label {
+  font-weight: bold; /* Face textul să fie bold */
+  color: #333;
+  margin-bottom: 10px;
+  text-align: left; /* Alinează textul la stânga */
+  display: inline-block; /* Face ca elementul să fie pe linie cu textul următor */
+  width: 100%;
+}
+
+.info-discount-popup p,
+.info-discount-popup span {
+  margin-bottom: 20px;
+  padding: 10px;
+  display: block; /* Asigură-te că elementul ocupă întreaga lățime */
+  text-align: left; /* Alinează textul la stânga */
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.info-btn .close-info-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #ffc107; /* O culoare inspirată din butonul tău de închidere */
+  color: white;
+  border: none;
+  font-size: 1em;
+  margin-top: 20px; /* Adaugă spațiu deasupra butonului */
+  width: 100%; /* Lățime completă pentru a se potrivi cu stilul */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* O mică umbră pentru buton */
+}
+
+.info-btn .close-info-btn:hover {
+  background-color: #e0a800; /* O culoare mai închisă pentru hover */
+  opacity: 1; /* Opacitate completă pentru hover */
+}

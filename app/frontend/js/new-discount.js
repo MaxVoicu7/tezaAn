@@ -111,3 +111,116 @@ function fetchStores() {
       console.error('Error fetching stores:', error);
     });
 }
+
+
+
+
+document.querySelector(".discount-form__body").addEventListener("submit", function(event) {
+  let selectedValue = document.getElementById("discount-type").value;
+  if(selectedValue < 1 || selectedValue > 4) {
+      event.preventDefault();
+      alert('selecteaza un tip de reducere');
+      return;
+  }
+
+  let checkboxes = document.querySelectorAll("#stores-fields-container input[type='checkbox']");
+  let isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+  if(!isChecked) {
+      event.preventDefault();
+      alert('Selectează cel puțin un magazin');
+      return;
+  }
+
+      // Validarea datelor de început și sfârșit
+      let startDate = new Date(document.getElementById("start-date").value);
+      let endDate = new Date(document.getElementById("end-date").value);
+      let today = new Date();
+      today.setHours(0, 0, 0, 0); // Resetează ora, minutele, secundele și milisecundele
+  
+      if(startDate < today) {
+          event.preventDefault();
+          alert('Ziua de început a reducerii trebuie să fie cel puțin egală cu ziua de azi');
+          return;
+      }
+  
+      if(endDate <= today) {
+          event.preventDefault();
+          alert('Ziua de sfârșit a reducerii trebuie să fie mai mare decât ziua de azi');
+          return;
+      }
+  
+      if(endDate <= startDate) {
+          event.preventDefault();
+          alert('Ziua de sfârșit a reducerii trebuie să fie după ziua de început');
+          return;
+      }
+
+  
+    let formData = {
+        discount_description: document.getElementById("description").value,
+        start_date: document.getElementById("start-date").value,
+        end_date: document.getElementById("end-date").value,
+        discount_type: document.getElementById("discount-type").value,
+    };
+
+    if (formData.discount_type === "1") {
+      formData.discount_percentage = document.getElementById("percentage-value").value;
+      formData.product_code = document.getElementById("product-code-percentage").value;
+    }
+    else if (formData.discount_type === "2") {
+      formData.product_code = document.getElementById("product-code-fixed").value;
+      formData.discount_fixed_value = document.getElementById("fixed-value").value;
+    }
+    else if (formData.discount_type === "3") {
+      let numberOfProducts = parseInt(document.getElementById("number-of-products").value, 10);
+      let productCodes = [];
+
+      for (let i = 0; i < numberOfProducts; i++) {
+            let productCode = document.getElementById(`product-code-${i}`).value; // Presupunem că ai ID-uri dinamice pentru fiecare câmp de cod al produsului
+            if (productCode) {
+                productCodes.push(productCode);
+            }
+        }
+
+        let finalPrice = document.getElementById("final-price").value;
+        formData.product_codes = productCodes;
+        formData.final_price = finalPrice;
+    }
+    else if (formData.discount_type === "4") {
+      formData.product_code = document.getElementById("product-code-quantity").value;
+      formData.free_quantity = document.getElementById("quantity-free").value;
+      formData.required_quantity = document.getElementById("quantity-required").value;
+    }
+
+    let storeCheckboxes = document.querySelectorAll("#stores-fields-container input[type='checkbox']:checked");
+    let selectedStoreIds = Array.from(storeCheckboxes).map(checkbox => checkbox.value);
+    formData.stores = selectedStoreIds;
+
+    // Opțional: Loghează formData pentru a verifica datele
+    console.log(formData);
+
+    fetch('http://localhost:5555/admin-discount', {
+        method: 'POST', // Metoda HTTP pentru trimitere
+        headers: {
+            'Content-Type': 'application/json', // Specifică faptul că trimitem date în format JSON
+        },
+        body: JSON.stringify(formData) // Convertim obiectul formData în JSON
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Procesează răspunsul JSON
+    })
+    .then(data => {
+        console.log('Success:', data);
+        // Aici poți adăuga logica pentru succes (ex: redirecționare, afișare mesaj de succes etc.)
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        // Aici poți gestiona erorile (ex: afișare mesaj de eroare)
+    });
+
+    event.preventDefault();
+});

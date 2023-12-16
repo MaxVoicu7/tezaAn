@@ -88,6 +88,53 @@
 
     </div>
 
+    <div id="overlay" style="display:none;"></div>
+    <div id="edit-discount-popup" class="edit-discount-popup" style="display:none;">
+        <h2 id="discount-id">Editează Reducerea</h2>
+        <div>
+            <label for="discount_description">Descriere:</label>
+            <textarea id="discount_description" name="discount_description" rows="4" cols="50"></textarea>
+        </div>
+        <div>
+            <label for="start_date">Data început:</label>
+            <input type="date" id="start_date" name="start_date">
+        </div>
+        <div>
+            <label for="end_date">Data sfârșit:</label>
+            <input type="date" id="end_date" name="end_date">
+        </div>
+        <div class="edit-btn">
+            <button class="edit-changes-btn" onclick="saveEditChanges()">Salvează Modificările</button>
+            <button class="close-changes-btn" onclick="closePopupEdit()">Închide</button>
+        </div>
+    </div>
+    <div id="delete-confirmation-popup" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeDeletePopup()">&times;</span>
+            <p>Sunteți sigur că doriți să ștergeți această reducere?</p>
+            <button id="confirm-delete" onclick="confirmDelete()">Da</button>
+            <button id="abandon-delete" onclick="closeDeletePopup()">Nu</button>
+        </div>
+    </div>
+    <div id="info-discount-popup" class="info-discount-popup" style="display:none;">
+        <h2 id="info-discount-id">Informații Reducere</h2>
+        <div>
+            <label>Descriere:</label>
+            <p id="info-discount-description"></p>
+        </div>
+        <div>
+            <label>Data început:</label>
+            <span id="info-start-date"></span>
+        </div>
+        <div>
+            <label>Data sfârșit:</label>
+            <span id="info-end-date"></span>
+        </div>
+        <div class="info-btn">
+            <button class="close-info-btn" onclick="closePopupInfo()">Închide</button>
+        </div>
+    </div>
+
   <script src="./js/admin.js"></script>
 </body>
 </html>

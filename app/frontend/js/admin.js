@@ -47,12 +47,13 @@ document.querySelector('.insight-btn.expired-discount').addEventListener('click'
 
       data.forEach(discount => {
         const row = document.createElement('tr');
+        const discountDataString = JSON.stringify(discount).replace(/"/g, '\\"');
         row.innerHTML = `
             <td>${discount.discount_id}</td>
             <td>${discount.start_date}</td>
             <td>${discount.end_date}</td>
             <td>${discount.discount_type}</td>
-            <td><i class='bx info-btn bxs-info-circle'></i></td>
+            <td><i class='bx info-btn bxs-info-circle' onclick='openPopupInfo("${discountDataString}")'></i></td>
         `;
         tableBody.appendChild(row);
       });
@@ -99,13 +100,14 @@ document.querySelector('.insight-btn.active-discount').addEventListener('click',
 
       data.forEach(discount => {
         const row = document.createElement('tr');
+        const discountDataString = JSON.stringify(discount).replace(/"/g, '\\"');
         row.innerHTML = `
             <td>${discount.discount_id}</td>
             <td>${discount.start_date}</td>
             <td>${discount.end_date}</td>
             <td>${discount.discount_type}</td>
-            <td><i class='bx edit-btn bxs-edit-alt' ></i></td>
-            <td><i class='bx delete-btn bxs-trash-alt'></i></td>
+            <td><i class='bx edit-btn bxs-edit-alt' onclick='openPopupEdit("${discountDataString}")'></i></td>
+            <td><i class='bx delete-btn bxs-trash-alt' onclick='openDeletePopup(${discount.discount_id})'></i></td>
         `;
         tableBody.appendChild(row);
       });
@@ -152,13 +154,14 @@ document.querySelector('.insight-btn.future-discount').addEventListener('click',
 
     data.forEach(discount => {
       const row = document.createElement('tr');
+      const discountDataString = JSON.stringify(discount).replace(/"/g, '\\"');
       row.innerHTML = `
           <td>${discount.discount_id}</td>
           <td>${discount.start_date}</td>
           <td>${discount.end_date}</td>
           <td>${discount.discount_type}</td>
-          <td><i class='bx edit-btn bxs-edit-alt' ></i></td>
-          <td><i class='bx delete-btn bxs-trash-alt'></i></td>
+          <td><i class='bx edit-btn bxs-edit-alt' onclick='openPopupEdit("${discountDataString}")'></i></td>
+          <td><i class='bx delete-btn bxs-trash-alt' onclick='openDeletePopup(${discount.discount_id})'></i></td>
       `;
       tableBody.appendChild(row);
     });
@@ -168,3 +171,123 @@ document.querySelector('.insight-btn.future-discount').addEventListener('click',
     console.error('Error:', error);
   });
 });
+
+
+function openPopupEdit(discountDataString) {
+  try {
+    const discount = JSON.parse(discountDataString);
+
+    const popup = document.getElementById("edit-discount-popup");
+    popup.setAttribute('data-discount-id', discount.discount_id);
+    
+    // Setează valorile în câmpurile de input
+    document.getElementById('discount-id').textContent = 'Editează Reducerea ' + (discount.discount_id || '');
+    document.getElementById('discount_description').value = discount.discount_description || '';
+    document.getElementById('start_date').value = discount.start_date || '';
+    document.getElementById('end_date').value = discount.end_date || '';
+    
+    // Arată pop-up-ul și overlay-ul
+    document.getElementById("edit-discount-popup").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+  } catch (error) {
+    console.error("Eroare la parsarea JSON-ului: ", error);
+  }
+}
+
+function closePopupEdit() {
+  document.getElementById("edit-discount-popup").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
+}
+
+
+
+function saveEditChanges() {
+  const popup = document.getElementById("edit-discount-popup");
+  const discountId = popup.getAttribute('data-discount-id');
+
+  const discountDescription = document.getElementById('discount_description').value;
+  const startDate = document.getElementById('start_date').value;
+  const endDate = document.getElementById('end_date').value;
+
+  const discountData = {
+      discount_description: discountDescription,
+      start_date: startDate,
+      end_date: endDate
+  };
+
+  const fetchOptions = {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(discountData)
+  };
+
+  // Trimite cererea către server
+  fetch(`http://localhost:5555/discount/${discountId}`, fetchOptions) // înlocuiește cu URL-ul corect al API-ului tău
+      .then(response => {
+          if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log('Success:', data);
+          // Închide fereastra pop-up și reîmprospătează lista de discounturi, dacă este necesar
+          closePopupEdit();
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+      });
+}
+
+
+
+
+function openDeletePopup(discountId) {
+  // Salvează ID-ul reducerii într-un atribut data pentru a-l folosi în confirmDelete
+  document.getElementById('confirm-delete').setAttribute('data-discount-id', discountId);
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById('delete-confirmation-popup').style.display = 'block';
+}
+
+// Funcția pentru a închide fereastra de confirmare a ștergerii
+function closeDeletePopup() {
+  document.getElementById('delete-confirmation-popup').style.display = 'none';
+  document.getElementById("overlay").style.display = "none";
+}
+
+
+
+function confirmDelete() {
+  var discountId = document.getElementById('confirm-delete').getAttribute('data-discount-id');
+  fetch(`http://localhost:5555/discount/${discountId}`, { method: 'DELETE' })
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          closeDeletePopup();
+      })
+      .catch(error => console.error('Error:', error));
+}
+
+
+
+
+
+function openPopupInfo(discountDataString) {
+  const discount = JSON.parse(discountDataString);
+  
+  // Setează valorile în elementele de text
+  document.getElementById('info-discount-id').textContent = 'Informații Reducere #' + (discount.discount_id || '');
+  document.getElementById('info-discount-description').textContent = discount.discount_description || 'N/A';
+  document.getElementById('info-start-date').textContent = discount.start_date || 'N/A';
+  document.getElementById('info-end-date').textContent = discount.end_date || 'N/A';
+  
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById("info-discount-popup").style.display = "block";
+}
+
+function closePopupInfo() {
+  document.getElementById("info-discount-popup").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
+}
