@@ -399,6 +399,95 @@ section {
 .discounts .discount:hover {
   border: 0.2rem solid #29d9d5;
 }
+.discount-detail-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.popup-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.popup-content {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+  background: #121212; /* Background întunecat */
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 10001;
+  text-align: center;
+}
+
+.popup-content p {
+  color: #ffffff; /* Text alb pentru contrast */
+  margin-bottom: 1rem;
+}
+
+.popup-content h2 {
+  color: #29d9d5;
+  font-size: 3rem; /* Mărește dimensiunea titlului */
+  margin-bottom: 0.5em;
+}
+
+.popup-content p {
+  font-size: 2rem; /* Mărește dimensiunea textului */
+  line-height: 1.6; /* Adaugă spațiu între liniile de text */
+  margin-bottom: 1em; /* Adaugă spațiu după fiecare paragraf */
+}
+
+.popup-stores h3 {
+  color: #cecece;
+  font-size: 2.2rem; /* Mărește dimensiunea titlului */
+  margin-bottom: 0.2em;
+  text-decoration: underline;
+}
+
+.popup-stores h4 {
+  font-size: 1.9rem;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.popup-stores p {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.popup-initial-price {
+  color: red;
+}
+
+.popup-final-price {
+  color: #16cf16;
+}
+
+.popup-content button {
+  border: none;
+  background-color: #22d1ee; /* Culoare de accent */
+  color: #121212; /* Text întunecat */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 2rem; 
+  font-weight: 600;/* Ajustează dimensiunea textului în buton dacă este necesar */
+  padding: 15px 30px;
+  margin-top: 1rem; 
+}
+
+.popup-content button:hover {
+  background-color: #17a2b8; /* Schimbă culoarea la hover pentru feedback vizual */
+  color: #fff;
+}
 @media (max-width: 800px) {
   html {
     font-size: 60%;

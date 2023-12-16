@@ -102,6 +102,10 @@ fetch('http://localhost:5555/category')
     button.textContent = 'Mai mult';
   
     buttonDiv.appendChild(button);
+
+    button.onclick = function() {
+      openPopupDetail(discount);
+    };
   
     priceDiv.appendChild(pricesDiv);
     priceDiv.appendChild(buttonDiv);
@@ -155,3 +159,57 @@ fetch('http://localhost:5555/category')
 
   });
   
+
+
+
+
+  function openPopupDetail(discount) {
+    document.getElementById('popup-title').textContent = `Detalii Reducere #${discount.id}`;
+    document.getElementById('popup-description').textContent = discount.description;
+    document.getElementById('popup-initial-price').textContent = discount.initial_price;
+    document.getElementById('popup-final-price').textContent = discount.final_price;
+    document.getElementById('popup-start-date').textContent = discount.start_date;
+    document.getElementById('popup-end-date').textContent = discount.end_date;
+
+    // Șterge orice magazine listate anterior
+    const storesContainer = document.getElementById('popup-stores');
+    while (storesContainer.firstChild) {
+        storesContainer.removeChild(storesContainer.firstChild);
+    }
+
+    // Adaugă un titlu pentru secțiunea magazinelor
+    const storesTitle = document.createElement('h3');
+    storesTitle.textContent = 'Disponibil în magazinele';
+    storesContainer.appendChild(storesTitle);
+
+    console.log(discount.stores);
+
+    // Creează și adaugă lista de magazine
+    discount.stores.forEach((store) => {
+        const storeDiv = document.createElement('div');
+        storeDiv.classList.add('store-info');
+
+        const storeName = document.createElement('h4');
+        storeName.textContent = store.name;
+
+        const storeAddress = document.createElement('p');
+        storeAddress.textContent = `Adresa: ${store.address}`;
+
+        const storeHours = document.createElement('p');
+        storeHours.textContent = `Orar: ${store.working_hours}`;
+
+        storeDiv.appendChild(storeName);
+        storeDiv.appendChild(storeAddress);
+        storeDiv.appendChild(storeHours);
+
+        storesContainer.appendChild(storeDiv);
+    });
+
+    // Afișează pop-up-ul
+    document.getElementById('discount-detail-popup').style.display = 'flex';
+}
+
+
+function closePopupDetail() {
+    document.getElementById('discount-detail-popup').style.display = 'none';
+}

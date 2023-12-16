@@ -14,6 +14,9 @@
   <!-- ================== JS ================== -->
   <script src="./js/discount.js" defer></script>
 
+  <!-- ================== FAVICON ================== -->
+  <link rel="shortcut icon" href="./favicon/favicon.ico" type="image/x-icon">
+
 </head>
 <body>
 
@@ -26,10 +29,7 @@
     <a href="#" class="logo"><i class="fa-solid fa-tag"></i></i>iDiscount</a>
 
     <nav class="navbar">
-      <a href="#about" class="navbar__link">Despre noi</a>
-      <a href="#stores" class="navbar__link">Magazine</a>
-      <a href="#services" class="navbar__link">Servicii</a>
-      <a href="#" class="navbar__link">Reduceri</a>
+      <a href="./index.html" class="navbar__link">Pagina principală</a>
     </nav>
 
   </header>
@@ -49,7 +49,7 @@
     <div class="select__item">
       <label for="category-select" class="select__label">Categorie</label>
       <select id="category-select">
-        <option value="">Alege o categorie</option>
+        <option value="0">Alege o categorie</option>
       </select>
     </div>
 
@@ -75,36 +75,21 @@
 
   <section class="discounts">
 
-    <div class="discount">
-      <div class="discount__presentation">
-        <span class="discount__label">Produs</span>
-        <p class="discount__info">Reducere de 10 procente</p>
-        <p class="discount__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, modi.</p>
-      </div>
-
-      <div class="discount__price">
-        <div class="prices">
-          <p class="old-price">20.00</p>
-          <p class="new-price">18.00</p>
-        </div>
-
-        <div class="discount__button">
-          <button class="btn">Mai mult</button>
-        </div>
-      </div>
-    </div>
-
   </section>
 
-  <!-- ============== FOOTER SECTION START ================= -->
 
-  <!-- <footer class="footer">
-
-    <div class="credits">Realizat de <span class="credits__person">Voicu Maxim</span> | Toate drepturile sunt rezervate!</div>
-
-  </footer> -->
-
-  <!-- ============== FOOTER SECTION END ================= -->
+  <div id="discount-detail-popup" class="discount-detail-popup" style="display:none;">
+    <div class="popup-overlay" onclick="closePopupDetail()"></div>
+    <div class="popup-content">
+        <h2 id="popup-title">Detalii Reducere #1</h2>
+        <p id="popup-description"></p>
+        <p id="popup-date"><span id="popup-start-date"></span> -> <span id="popup-end-date"></span></p>
+        <p id="popup-price">Preț inițial: <span id="popup-initial-price" class="popup-initial-price"></span> | Preț final: <span id="popup-final-price" class="popup-final-price"></span></p>
+        <div id="popup-stores" class="popup-stores">>
+        </div>
+        <button onclick="closePopupDetail()">Închide</button>
+    </div>
+</div>
 
 </body>
 </html>

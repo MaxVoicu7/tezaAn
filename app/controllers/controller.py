@@ -3,6 +3,7 @@ from db.db_connect import db
 from flask import jsonify, request
 from models.product_category import ProductCategory
 from models.discount import Discount
+from models.discount_instance import DiscountInstance
 from models.complementary_discount import ComplementaryDiscount
 from models.fixed_value_discount import FixedValueDiscount
 from models.quantity_discount import QuantityDiscount
@@ -38,6 +39,21 @@ def get_discounts():
         'initial_price': None,
         'final_price': None
 			}
+
+      discount_instances = DiscountInstance.query.filter_by(discount_id=discount.id).all()
+
+      stores = []
+      for instance in discount_instances:
+        store = instance.store
+        store_data = {
+            'name': store.name,
+            'address': store.address,
+            'working_hours': '24/7' if store.is_open_24_7 else f'{store.opening_hour.strftime("%H:%M")} - {store.closing_hour.strftime("%H:%M")}'
+        }
+        stores.append(store_data)
+
+    
+      discount_data['stores'] = stores
       
       if discount.discount_type_id == 1:
         details = PercentageDiscount.query.filter_by(discount_id=discount.id).join(Product, Product.id == PercentageDiscount.product_id).first()
@@ -109,6 +125,21 @@ def process_request():
         'final_price': None,
         'category_id': []
 			}
+
+      discount_instances = DiscountInstance.query.filter_by(discount_id=discount.id).all()
+
+      stores = []
+      for instance in discount_instances:
+        store = instance.store
+        store_data = {
+            'name': store.name,
+            'address': store.address,
+            'working_hours': '24/7' if store.is_open_24_7 else f'{store.opening_hour.strftime("%H:%M")} - {store.closing_hour.strftime("%H:%M")}'
+        }
+        stores.append(store_data)
+
+    
+      discount_data['stores'] = stores
       
       if discount.discount_type_id == 1:
         details = PercentageDiscount.query.filter_by(discount_id=discount.id).join(Product, Product.id == PercentageDiscount.product_id).first()
@@ -160,7 +191,14 @@ def process_request():
 
 
   for discount in discounts_list:
-    if category_id in discount['category_id'] and float(discount['final_price']) >= start_price and float(discount['final_price']) <= end_price :
-      filtered_discounts.append(discount)
+    # Verifică dacă category_id este 0 sau dacă este în lista de categorii
+    is_category_matched = category_id == 0 or category_id in discount['category_id']
+
+    # Verifică dacă prețul final se încadrează în intervalul dorit
+    is_price_matched = float(discount['final_price']) >= start_price and float(discount['final_price']) <= end_price
+
+    # Adaugă reducerea în lista filtrată doar dacă ambele condiții (categorie și preț) sunt îndeplinite
+    if is_category_matched and is_price_matched:
+        filtered_discounts.append(discount)
   
   return jsonify(filtered_discounts)
