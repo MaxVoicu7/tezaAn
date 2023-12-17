@@ -215,7 +215,14 @@ document.querySelector(".discount-form__body").addEventListener("submit", functi
     })
     .then(data => {
         console.log('Success:', data);
-        // Aici poți adăuga logica pentru succes (ex: redirecționare, afișare mesaj de succes etc.)
+            // Adăugăm o nouă stare în istorie pentru pagina curentă
+        history.pushState(null, "", window.location.href);    
+
+        // Înlocuim starea curentă cu pagina la care dorim să redirecționăm
+        history.replaceState(null, "", '../frontend/admin.html');
+
+        // Redirecționăm la noua adresă
+        window.location.href = '../frontend/admin.html';
     })
     .catch((error) => {
         console.error('Error:', error);

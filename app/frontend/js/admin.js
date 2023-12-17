@@ -47,6 +47,7 @@ document.querySelector('.insight-btn.expired-discount').addEventListener('click'
 
       data.forEach(discount => {
         const row = document.createElement('tr');
+        row.id = 'discount-row-' + discount.discount_id;
         const discountDataString = JSON.stringify(discount).replace(/"/g, '\\"');
         row.innerHTML = `
             <td>${discount.discount_id}</td>
@@ -154,6 +155,7 @@ document.querySelector('.insight-btn.future-discount').addEventListener('click',
 
     data.forEach(discount => {
       const row = document.createElement('tr');
+      row.id = 'discount-row-' + discount.discount_id;
       const discountDataString = JSON.stringify(discount).replace(/"/g, '\\"');
       row.innerHTML = `
           <td>${discount.discount_id}</td>
@@ -233,7 +235,7 @@ function saveEditChanges() {
       })
       .then(data => {
           console.log('Success:', data);
-          // Închide fereastra pop-up și reîmprospătează lista de discounturi, dacă este necesar
+          updateTableRow(discountId, discountData);
           closePopupEdit();
       })
       .catch((error) => {
@@ -266,9 +268,16 @@ function confirmDelete() {
       .then(data => {
           console.log(data);
           closeDeletePopup();
+          removeDiscountFromTable(discountId);
       })
       .catch(error => console.error('Error:', error));
 }
+
+
+
+
+
+
 
 
 
@@ -290,4 +299,29 @@ function openPopupInfo(discountDataString) {
 function closePopupInfo() {
   document.getElementById("info-discount-popup").style.display = "none";
   document.getElementById("overlay").style.display = "none";
+}
+
+
+
+
+
+
+function removeDiscountFromTable(discountId) {
+  // Găsește rândul cu identificatorul unic și îl elimină
+  let rowToDelete = document.getElementById('discount-row-' + discountId);
+  if (rowToDelete) {
+      rowToDelete.remove();
+  }
+}
+
+
+
+
+function updateTableRow(discountId, discountData) {
+  // Găsește rândul cu ID-ul specific și obține celulele
+  let row = document.getElementById('discount-row-' + discountId);
+  if (row) {
+    row.cells[1].textContent = discountData.start_date;
+    row.cells[2].textContent = discountData.end_date;
+  }
 }
