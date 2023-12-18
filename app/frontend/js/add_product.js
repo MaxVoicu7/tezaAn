@@ -54,10 +54,10 @@ document.getElementById('add-product-form').addEventListener('submit', function(
   const productData = {
     name: productName,
     volume: productVolume,
-    manufacturerId: manufacturerId,
-    uniqueCode: uniqueCode,
+    manufacturer_id: manufacturerId,
+    unique_code: uniqueCode,
     price: productPrice,
-    categoryId: categoryId
+    category_id: categoryId
   };
 
   console.log(productData)

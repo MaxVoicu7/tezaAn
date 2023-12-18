@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-# Importing controllers for different entities
+# Importing controllers
 from controllers.category import get_categories
 from controllers.manufacturer import get_manufacturers
 from controllers.store import get_stores_in_network_one
