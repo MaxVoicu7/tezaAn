@@ -7,7 +7,6 @@ from models.manufacturer import Manufacturer
 
 def get_products():
     try:
-        # Interogarea pentru a obține toate produsele cu informațiile relevante
         products = db.session.query(
             Product, Manufacturer, ProductCategory
         ).join(

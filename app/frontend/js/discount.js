@@ -135,7 +135,7 @@ fetch('http://localhost:5555/category')
 
 
     
-    fetch('http://localhost:5555/discount-info', {
+    fetch('http://localhost:5555/discount', {
       method: 'POST',  // sau 'GET', în funcție de cum este configurat backend-ul tău
       headers: {
         'Content-Type': 'application/json',

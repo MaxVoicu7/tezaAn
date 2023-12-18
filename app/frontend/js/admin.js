@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.querySelector('.insight-btn.expired-discount').addEventListener('click', function() {
-  fetch('http://localhost:5555/admin-expired-discount')
+  fetch('http://localhost:5555/admin-discount/expired')
   .then(response => response.json())
   .then(data => {
     const textContainer = document.querySelector('.discount-status-title');
@@ -68,7 +68,7 @@ document.querySelector('.insight-btn.expired-discount').addEventListener('click'
 
 
 document.querySelector('.insight-btn.active-discount').addEventListener('click', function() {
-  fetch('http://localhost:5555/admin-actual-discount')
+  fetch('http://localhost:5555/admin-discount/actual')
   .then(response => response.json())
   .then(data => {
     const textContainer = document.querySelector('.discount-status-title');
@@ -122,7 +122,7 @@ document.querySelector('.insight-btn.active-discount').addEventListener('click',
 
 
 document.querySelector('.insight-btn.future-discount').addEventListener('click', function() {
-  fetch('http://localhost:5555/admin-future-discount')
+  fetch('http://localhost:5555/admin-discount/future')
   .then(response => response.json())
   .then(data => {
     const textContainer = document.querySelector('.discount-status-title');
