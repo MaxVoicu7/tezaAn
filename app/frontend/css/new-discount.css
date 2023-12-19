@@ -25,7 +25,7 @@
 }
 
 .discount-form__input {
-  width: calc(100% - 20px); /* Adjust width considering padding */
+  width: calc(100% - 20px); 
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -33,11 +33,11 @@
 }
 
 .discount-form__input--description {
-  height: 50px; /* Specific height for the description input */
+  height: 50px; 
 }
 
 .discount-form__input--date {
-  flex-basis: 50%; /* Each date input takes roughly half the width of the form */
+  flex-basis: 50%; 
 }
 
 .discount-form__select {
@@ -47,7 +47,7 @@
   border-radius: 4px;
   background-color: white;
   font-size: 16px;
-  margin-bottom: 20px; /* To give some space above the submit button */
+  margin-bottom: 20px; 
 }
 
 .discount-form__select:focus {
@@ -107,7 +107,7 @@
   margin-right: 10px;
 }
 
-/* Style pentru a îmbunătăți vizibilitatea label-urilor ce sunt focusate sau active */
+
 .discount-form__group input[type=checkbox]:focus + label,
 .discount-form__group input[type=checkbox]:active + label {
   outline: 1px solid #0056b3;

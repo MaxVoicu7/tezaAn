@@ -7,7 +7,7 @@ fetch('http://localhost:5555/product')
   })
   .then(products => {
     const tableBody = document.getElementById('product-table-body');
-    tableBody.innerHTML = '';  // Curăță conținutul existent
+    tableBody.innerHTML = ''; 
 
     products.forEach(product => {
       const row = tableBody.insertRow();
@@ -31,5 +31,5 @@ fetch('http://localhost:5555/product')
 
 
   document.getElementById('add-product-btn').addEventListener('click', function() {
-    window.location.href = './../frontend/add_product.html'; // Înlocuiește cu calea reală a paginii tale
+    window.location.href = './../frontend/add_product.html'; 
   });

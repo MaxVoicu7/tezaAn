@@ -422,7 +422,7 @@ section {
   position: relative;
   width: 80%;
   max-width: 800px;
-  background: #121212; /* Background întunecat */
+  background: #121212; 
   padding: 20px;
   border-radius: 8px;
   z-index: 10001;
@@ -430,25 +430,25 @@ section {
 }
 
 .popup-content p {
-  color: #ffffff; /* Text alb pentru contrast */
+  color: #ffffff; 
   margin-bottom: 1rem;
 }
 
 .popup-content h2 {
   color: #29d9d5;
-  font-size: 3rem; /* Mărește dimensiunea titlului */
+  font-size: 3rem; 
   margin-bottom: 0.5em;
 }
 
 .popup-content p {
-  font-size: 2rem; /* Mărește dimensiunea textului */
-  line-height: 1.6; /* Adaugă spațiu între liniile de text */
-  margin-bottom: 1em; /* Adaugă spațiu după fiecare paragraf */
+  font-size: 2rem; 
+  line-height: 1.6; 
+  margin-bottom: 1em; 
 }
 
 .popup-stores h3 {
   color: #cecece;
-  font-size: 2.2rem; /* Mărește dimensiunea titlului */
+  font-size: 2.2rem; 
   margin-bottom: 0.2em;
   text-decoration: underline;
 }
@@ -474,18 +474,18 @@ section {
 
 .popup-content button {
   border: none;
-  background-color: #22d1ee; /* Culoare de accent */
-  color: #121212; /* Text întunecat */
+  background-color: #22d1ee;
+  color: #121212; 
   border-radius: 5px;
   cursor: pointer;
   font-size: 2rem; 
-  font-weight: 600;/* Ajustează dimensiunea textului în buton dacă este necesar */
+  font-weight: 600;
   padding: 15px 30px;
   margin-top: 1rem; 
 }
 
 .popup-content button:hover {
-  background-color: #17a2b8; /* Schimbă culoarea la hover pentru feedback vizual */
+  background-color: #17a2b8; 
   color: #fff;
 }
 @media (max-width: 800px) {

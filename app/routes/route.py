@@ -5,7 +5,7 @@ from controllers.category import get_categories
 from controllers.manufacturer import get_manufacturers
 from controllers.store import get_stores_in_network_one
 from controllers.product import get_products, add_product
-from controllers.discount import get_discounts, process_request, update_discount, delete_discount
+from controllers.discount import get_discounts, get_discounts_by_params, update_discount, delete_discount, get_discount
 from controllers.admin_discount import get_expired_discounts, get_actual_discounts, get_future_discounts, get_discount_counts, add_discount
 
 # Creating a Blueprint for the main routes
@@ -21,7 +21,8 @@ main_blueprint.route('/product', methods=['GET'])(get_products)
 main_blueprint.route('/product', methods=['POST'])(add_product)
 
 main_blueprint.route('/discount', methods=['GET'])(get_discounts)
-main_blueprint.route('/discount', methods=['POST'])(process_request)
+main_blueprint.route('/discount', methods=['POST'])(get_discounts_by_params)
+main_blueprint.route('/discount/<int:discount_id>', methods=['GET'])(get_discount)
 main_blueprint.route('/discount/<int:discount_id>', methods=['PUT'])(update_discount)
 main_blueprint.route('/discount/<int:discount_id>', methods=['DELETE'])(delete_discount)
 

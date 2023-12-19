@@ -3,6 +3,8 @@ window.addEventListener('load', () => {
   populateDropdown('category-select', 'http://localhost:5555/category');
 });
 
+
+
 function populateDropdown(dropdownId, url) {
   fetch(url)
     .then(response => response.json())
@@ -18,14 +20,9 @@ function populateDropdown(dropdownId, url) {
 
 
 
-
-
-
-
 document.getElementById('add-product-form').addEventListener('submit', function(event) {
   event.preventDefault();
 
-  // Verifică fiecare câmp pentru a te asigura că este completat
   const productName = document.getElementById('product-name').value.trim();
   const productVolume = document.getElementById('product-volume').value.trim();
   const manufacturerId = document.getElementById('manufacturer-select').value.trim();
@@ -33,7 +30,6 @@ document.getElementById('add-product-form').addEventListener('submit', function(
   const productPrice = document.getElementById('product-price').value.trim();
   const categoryId = document.getElementById('category-select').value.trim();
 
-  // Lista de câmpuri pentru a verifica dacă sunt goale
   const fields = [
     { value: productName, name: 'Nume' },
     { value: productVolume, name: 'Volum' },
@@ -46,11 +42,10 @@ document.getElementById('add-product-form').addEventListener('submit', function(
   for (const field of fields) {
     if (!field.value) {
       alert(`Te rog să completezi câmpul "${field.name}".`);
-      return; // Întrerupe trimiterea formularului
+      return;
     }
   }
 
-  // Toate câmpurile sunt completate, continuă cu trimiterea datelor
   const productData = {
     name: productName,
     volume: productVolume,

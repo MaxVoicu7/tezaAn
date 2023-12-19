@@ -1,20 +1,25 @@
 from flask import jsonify
-from models.product_category import ProductCategory
+from db.category import fetch_all_categories
+from utils.transform import format_categories_data
+
+
+
 
 
 def get_categories():
 
   """
-    Fetches all product categories from the database and returns them in JSON format.
+    Controller function to get all product categories.
+    Fetches categories from the database and formats them for a JSON response.
 
     Returns:
-      A JSON response containing a list of product categories. Each category is represented as a dictionary with 'id' and 'name' keys.
-      In case of an exception, returns a JSON response with an 'error' key and a 500 status code.
+      A JSON response containing a list of categories or an error message.
   """
   
   try:
-    categories = ProductCategory.query.all()
-    categories_list = [{'id': category.id, 'name': category.name} for category in categories]
+    categories = fetch_all_categories()
+    categories_list = format_categories_data(categories)
     return jsonify(categories_list)
+  
   except Exception as e:
     return jsonify({"error": str(e)}), 500

@@ -1,21 +1,21 @@
 .add-product-form-section {
-  background-color: #1a1a1a; /* Fundal întunecat pentru secțiune */
+  background-color: #1a1a1a;
   padding: 20px;
   border-radius: 8px;
-  max-width: 600px; /* Ajustează la dimensiunea dorită */
+  max-width: 600px; 
   margin: 20px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adaugă o umbră ușoară pentru a ridica formularul deasupra fundalului */
-  color: #fff; /* Text alb pentru contrast */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  color: #fff; 
 }
 
 .add-product-form-section form {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Spațiere între câmpuri */
+  gap: 10px; 
 }
 
 .add-product-form-section label {
-  margin-bottom: 5px; /* Spațiere sub etichetă */
+  margin-bottom: 5px; 
 }
 
 .add-product-form-section input[type="text"],
@@ -23,30 +23,30 @@
 .add-product-form-section select {
   padding: 10px;
   border: none;
-  border-radius: 5px; /* Border rotunjit */
-  background-color: #333; /* Fundal mai deschis pentru inputuri */
-  color: #fff; /* Text alb pentru inputuri */
+  border-radius: 5px; 
+  background-color: #333; 
+  color: #fff; 
   font-size: 1em;
 }
 
 .add-product-form-section input[type="text"]:focus,
 .add-product-form-section input[type="number"]:focus,
 .add-product-form-section select:focus {
-  outline: 2px solid #04AA6D; /* Evidențiază câmpul activ */
+  outline: 2px solid #04AA6D; 
 }
 
 .add-product-form-section .btn {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #04AA6D; /* Culoare verde pentru buton */
+  background-color: #04AA6D; 
   color: #fff;
-  text-transform: uppercase; /* Textul butonului să fie cu majuscule */
+  text-transform: uppercase; 
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s; /* Animatie de culoare pentru buton */
+  transition: background-color 0.3s;
 }
 
 .add-product-form-section .btn:hover {
-  background-color: #037d53; /* Schimbă culoarea butonului la hover */
+  background-color: #037d53; 
 }

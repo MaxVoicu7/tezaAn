@@ -52,17 +52,15 @@ fetch('http://localhost:5555/category')
 
 
   function createDiscountElement(discount) {
-    // Crează elementul div pentru discount
     const discountDiv = document.createElement('div');
     discountDiv.classList.add('discount');
-  
-    // Secțiunea de prezentare a discount-ului
+
     const presentationDiv = document.createElement('div');
     presentationDiv.classList.add('discount__presentation');
   
     const labelSpan = document.createElement('span');
     labelSpan.classList.add('discount__label');
-    labelSpan.textContent = discount.products.join(', ');  // Listă de produse
+    labelSpan.textContent = discount.products.join(', '); 
   
     const infoP = document.createElement('p');
     infoP.classList.add('discount__info');
@@ -110,7 +108,6 @@ fetch('http://localhost:5555/category')
     priceDiv.appendChild(pricesDiv);
     priceDiv.appendChild(buttonDiv);
   
-    // Adaugă secțiunile la elementul principal de discount
     discountDiv.appendChild(presentationDiv);
     discountDiv.appendChild(priceDiv);
   
@@ -120,7 +117,6 @@ fetch('http://localhost:5555/category')
 
 
   document.getElementById('filter-submit').addEventListener('click', function() {
-    // Obține valorile selectate de utilizator
     const selectedCategory = document.getElementById('category-select').value;
     const startPrice = document.getElementById('start-value').value;
     const endPrice = document.getElementById('end-value').value;
@@ -136,7 +132,7 @@ fetch('http://localhost:5555/category')
 
     
     fetch('http://localhost:5555/discount', {
-      method: 'POST',  // sau 'GET', în funcție de cum este configurat backend-ul tău
+      method: 'POST',  
       headers: {
         'Content-Type': 'application/json',
       },
@@ -171,20 +167,17 @@ fetch('http://localhost:5555/category')
     document.getElementById('popup-start-date').textContent = discount.start_date;
     document.getElementById('popup-end-date').textContent = discount.end_date;
 
-    // Șterge orice magazine listate anterior
     const storesContainer = document.getElementById('popup-stores');
     while (storesContainer.firstChild) {
         storesContainer.removeChild(storesContainer.firstChild);
     }
 
-    // Adaugă un titlu pentru secțiunea magazinelor
     const storesTitle = document.createElement('h3');
     storesTitle.textContent = 'Disponibil în magazinele';
     storesContainer.appendChild(storesTitle);
 
     console.log(discount.stores);
 
-    // Creează și adaugă lista de magazine
     discount.stores.forEach((store) => {
         const storeDiv = document.createElement('div');
         storeDiv.classList.add('store-info');
@@ -205,7 +198,6 @@ fetch('http://localhost:5555/category')
         storesContainer.appendChild(storeDiv);
     });
 
-    // Afișează pop-up-ul
     document.getElementById('discount-detail-popup').style.display = 'flex';
 }
 

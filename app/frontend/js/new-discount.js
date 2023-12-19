@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   selectElement.addEventListener('change', function(event) {
     const value = event.target.value;
-    fieldsContainer.innerHTML = ''; // Clear the container
+    fieldsContainer.innerHTML = ''; 
     
     if (value === '1') {
       // Reducere procentuală
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="discount-form__group">
           <label for="fixed-value" class="discount-form__label">Valoarea reducerii:</label>
-          <input type="number" id="fixed-value" name="fixed-value" required class="discount-form__input">
+          <input type="number" id="fixed-value" name="fixed-value" required class="discount-form__input" step="0.01" min="0">
         </div>
       `;
     } else if (value === '3') {
@@ -51,14 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
       fieldsContainer.innerHTML = `
         <div class="discount-form__group">
           <label for="number-of-products" class="discount-form__label">Numărul de produse:</label>
-          <input type="number" id="number-of-products" name="number-of-products" required class="discount-form__input">
+          <input type="number" id="number-of-products" name="number-of-products" required class="discount-form__input" min="2">
         </div>
         <div class="discount-form__group" id="complementary-products-container">
           <!-- Aici vor fi adăugate câmpurile pentru codul produsului -->
         </div>
         <div class="discount-form__group">
           <label for="final-price" class="discount-form__label">Preț final:</label>
-          <input type="number" id="final-price" name="final-price" required class="discount-form__input">
+          <input type="number" id="final-price" name="final-price" required class="discount-form__input" step="0.01" min="0">
         </div>
       `;
 
@@ -93,10 +93,10 @@ function fetchStores() {
     .then(response => response.json())
     .then(stores => {
       const storesContainer = document.getElementById('stores-fields-container');
-      let fieldsetContent = `<fieldset><legend>Informații de Contact</legend>`; // Începe construirea conținutului fieldset
+      let fieldsetContent = `<fieldset><legend>Informații de Contact</legend>`;
       
       stores.forEach(store => {
-        // Adaugă fiecare label și checkbox în variabila fieldsetContent
+    
         fieldsetContent += `
           <label for="store-${store.store_id}">
             <input type="checkbox" id="store-${store.store_id}" name="stores" value="${store.store_id}">
@@ -104,8 +104,8 @@ function fetchStores() {
           </label><br>`;
       });
 
-      fieldsetContent += `</fieldset>`; // Închide tag-ul fieldset
-      storesContainer.innerHTML = fieldsetContent; // Adaugă tot conținutul în storesContainer
+      fieldsetContent += `</fieldset>`; 
+      storesContainer.innerHTML = fieldsetContent; 
     })
     .catch(error => {
       console.error('Error fetching stores:', error);
@@ -132,11 +132,10 @@ document.querySelector(".discount-form__body").addEventListener("submit", functi
       return;
   }
 
-      // Validarea datelor de început și sfârșit
       let startDate = new Date(document.getElementById("start-date").value);
       let endDate = new Date(document.getElementById("end-date").value);
       let today = new Date();
-      today.setHours(0, 0, 0, 0); // Resetează ora, minutele, secundele și milisecundele
+      today.setHours(0, 0, 0, 0);
   
       if(startDate < today) {
           event.preventDefault();
@@ -177,7 +176,7 @@ document.querySelector(".discount-form__body").addEventListener("submit", functi
       let productCodes = [];
 
       for (let i = 0; i < numberOfProducts; i++) {
-            let productCode = document.getElementById(`product-code-${i}`).value; // Presupunem că ai ID-uri dinamice pentru fiecare câmp de cod al produsului
+            let productCode = document.getElementById(`product-code-${i}`).value; 
             if (productCode) {
                 productCodes.push(productCode);
             }
@@ -197,36 +196,29 @@ document.querySelector(".discount-form__body").addEventListener("submit", functi
     let selectedStoreIds = Array.from(storeCheckboxes).map(checkbox => checkbox.value);
     formData.stores = selectedStoreIds;
 
-    // Opțional: Loghează formData pentru a verifica datele
     console.log(formData);
 
     fetch('http://localhost:5555/admin-discount', {
-        method: 'POST', // Metoda HTTP pentru trimitere
+        method: 'POST', 
         headers: {
-            'Content-Type': 'application/json', // Specifică faptul că trimitem date în format JSON
+            'Content-Type': 'application/json', 
         },
-        body: JSON.stringify(formData) // Convertim obiectul formData în JSON
+        body: JSON.stringify(formData) 
     })
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.json(); // Procesează răspunsul JSON
+        return response.json();
     })
     .then(data => {
         console.log('Success:', data);
-            // Adăugăm o nouă stare în istorie pentru pagina curentă
         history.pushState(null, "", window.location.href);    
-
-        // Înlocuim starea curentă cu pagina la care dorim să redirecționăm
         history.replaceState(null, "", '../frontend/admin.html');
-
-        // Redirecționăm la noua adresă
         window.location.href = '../frontend/admin.html';
     })
     .catch((error) => {
         console.error('Error:', error);
-        // Aici poți gestiona erorile (ex: afișare mesaj de eroare)
     });
 
     event.preventDefault();

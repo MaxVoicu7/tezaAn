@@ -1,16 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-  fetch('http://localhost:5555/admin-discount')
-  .then(response => response.json())
-  .then(data => {
-    // Actualizează numărul de reduceri în elementele respective
-    document.getElementById('active-discount-count').textContent = `Total: ${data.current_discounts_count}`;
-    document.getElementById('expired-discount-count').textContent = `Total: ${data.past_discounts_count}`;
-    document.getElementById('future-discount-count').textContent = `Total: ${data.future_discounts_count}`;
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-});
+document.addEventListener('DOMContentLoaded', updateDiscountCounts);
 
 
 
@@ -101,13 +89,12 @@ document.querySelector('.insight-btn.active-discount').addEventListener('click',
 
       data.forEach(discount => {
         const row = document.createElement('tr');
-        const discountDataString = JSON.stringify(discount).replace(/"/g, '\\"');
         row.innerHTML = `
             <td>${discount.discount_id}</td>
             <td>${discount.start_date}</td>
             <td>${discount.end_date}</td>
             <td>${discount.discount_type}</td>
-            <td><i class='bx edit-btn bxs-edit-alt' onclick='openPopupEdit("${discountDataString}")'></i></td>
+            <td><i class='bx edit-btn bxs-edit-alt' onclick='openPopupEdit("${discount.discount_id}")'></i></td>
             <td><i class='bx delete-btn bxs-trash-alt' onclick='openDeletePopup(${discount.discount_id})'></i></td>
         `;
         tableBody.appendChild(row);
@@ -156,13 +143,12 @@ document.querySelector('.insight-btn.future-discount').addEventListener('click',
     data.forEach(discount => {
       const row = document.createElement('tr');
       row.id = 'discount-row-' + discount.discount_id;
-      const discountDataString = JSON.stringify(discount).replace(/"/g, '\\"');
       row.innerHTML = `
           <td>${discount.discount_id}</td>
           <td>${discount.start_date}</td>
           <td>${discount.end_date}</td>
           <td>${discount.discount_type}</td>
-          <td><i class='bx edit-btn bxs-edit-alt' onclick='openPopupEdit("${discountDataString}")'></i></td>
+          <td><i class='bx edit-btn bxs-edit-alt' onclick='openPopupEdit("${discount.discount_id}")'></i></td>
           <td><i class='bx delete-btn bxs-trash-alt' onclick='openDeletePopup(${discount.discount_id})'></i></td>
       `;
       tableBody.appendChild(row);
@@ -175,26 +161,34 @@ document.querySelector('.insight-btn.future-discount').addEventListener('click',
 });
 
 
-function openPopupEdit(discountDataString) {
-  try {
-    const discount = JSON.parse(discountDataString);
-
-    const popup = document.getElementById("edit-discount-popup");
-    popup.setAttribute('data-discount-id', discount.discount_id);
+function openPopupEdit(discountId) {
+  fetch(`http://localhost:5555/discount/${discountId}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const discount = data.discount; 
+      const popup = document.getElementById("edit-discount-popup");
+      popup.setAttribute('data-discount-id', discount.discount_id);
     
-    // Setează valorile în câmpurile de input
-    document.getElementById('discount-id').textContent = 'Editează Reducerea ' + (discount.discount_id || '');
-    document.getElementById('discount_description').value = discount.discount_description || '';
-    document.getElementById('start_date').value = discount.start_date || '';
-    document.getElementById('end_date').value = discount.end_date || '';
+      document.getElementById('discount-id').textContent = 'Editează Reducerea ' + (discount.discount_id || '');
+      document.getElementById('discount_description').value = discount.discount_description || '';
+      document.getElementById('start_date').value = discount.start_date || '';
+      document.getElementById('end_date').value = discount.end_date || '';
     
-    // Arată pop-up-ul și overlay-ul
-    document.getElementById("edit-discount-popup").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
-  } catch (error) {
-    console.error("Eroare la parsarea JSON-ului: ", error);
-  }
+      document.getElementById("edit-discount-popup").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    })
+    .catch(error => {
+      console.error("Eroare la obținerea datelor discount-ului: ", error);
+    });
 }
+
+
+
 
 function closePopupEdit() {
   document.getElementById("edit-discount-popup").style.display = "none";
@@ -225,8 +219,7 @@ function saveEditChanges() {
       body: JSON.stringify(discountData)
   };
 
-  // Trimite cererea către server
-  fetch(`http://localhost:5555/discount/${discountId}`, fetchOptions) // înlocuiește cu URL-ul corect al API-ului tău
+  fetch(`http://localhost:5555/discount/${discountId}`, fetchOptions)
       .then(response => {
           if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);
@@ -245,15 +238,13 @@ function saveEditChanges() {
 
 
 
-
 function openDeletePopup(discountId) {
-  // Salvează ID-ul reducerii într-un atribut data pentru a-l folosi în confirmDelete
   document.getElementById('confirm-delete').setAttribute('data-discount-id', discountId);
   document.getElementById("overlay").style.display = "block";
   document.getElementById('delete-confirmation-popup').style.display = 'block';
 }
 
-// Funcția pentru a închide fereastra de confirmare a ștergerii
+
 function closeDeletePopup() {
   document.getElementById('delete-confirmation-popup').style.display = 'none';
   document.getElementById("overlay").style.display = "none";
@@ -269,6 +260,7 @@ function confirmDelete() {
           console.log(data);
           closeDeletePopup();
           removeDiscountFromTable(discountId);
+          updateDiscountCounts();
       })
       .catch(error => console.error('Error:', error));
 }
@@ -285,8 +277,7 @@ function confirmDelete() {
 
 function openPopupInfo(discountDataString) {
   const discount = JSON.parse(discountDataString);
-  
-  // Setează valorile în elementele de text
+
   document.getElementById('info-discount-id').textContent = 'Informații Reducere #' + (discount.discount_id || '');
   document.getElementById('info-discount-description').textContent = discount.discount_description || 'N/A';
   document.getElementById('info-start-date').textContent = discount.start_date || 'N/A';
@@ -307,7 +298,6 @@ function closePopupInfo() {
 
 
 function removeDiscountFromTable(discountId) {
-  // Găsește rândul cu identificatorul unic și îl elimină
   let rowToDelete = document.getElementById('discount-row-' + discountId);
   if (rowToDelete) {
       rowToDelete.remove();
@@ -318,10 +308,23 @@ function removeDiscountFromTable(discountId) {
 
 
 function updateTableRow(discountId, discountData) {
-  // Găsește rândul cu ID-ul specific și obține celulele
   let row = document.getElementById('discount-row-' + discountId);
   if (row) {
     row.cells[1].textContent = discountData.start_date;
     row.cells[2].textContent = discountData.end_date;
   }
 }
+
+
+
+function updateDiscountCounts() {
+  fetch('http://localhost:5555/admin-discount')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('active-discount-count').textContent = `Total: ${data.current_discounts_count}`;
+      document.getElementById('expired-discount-count').textContent = `Total: ${data.past_discounts_count}`;
+      document.getElementById('future-discount-count').textContent = `Total: ${data.future_discounts_count}`;
+    })
+    .catch(error => console.error('Error:', error));
+}
+

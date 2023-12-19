@@ -59,3 +59,25 @@ def add_product_to_db(product):
 
   db.session.add(product)
   db.session.commit()
+
+
+
+
+
+def fetch_product_by_code(product_code):
+  
+  """
+    Fetches a product by its unique code.
+
+    Args:
+      product_code: Unique code of the product.
+
+    Returns:
+      The Product object if found, otherwise raises ValueError.
+  """
+
+  product = Product.query.filter_by(unique_code=product_code).first()
+  if product is None:
+    raise ValueError(f'Produsul cu codul {product_code} nu a fost găsit')
+    
+  return product
